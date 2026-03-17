@@ -1,0 +1,39 @@
+body {
+    /*background image test */
+    background-image: url('resources/nimosana_darker.gif');
+    background-repeat: repeat;
+    background-position: center;
+    background-size: 68px;
+    background-position: top left;
+    background-attachment: fixed;
+    background-color: rgb(62, 47, 47);
+    color: #06ff2f;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-content: center;
+    /*auto center my stuffs*/
+    margin: auto;
+    max-width: auto;
+    /*SCROLL LETSGO */
+    overflow-x: auto;
+    overflow-y: auto;
+    /*text related*/
+    cursor: url('resources/cursor.png'), auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    line-height: 1.69;
+    padding: 102px 0px;
+}
+
+h1 {
+    color: #f81b1b;
+}
+
+p {
+    color: #666;
+}
+
+ul {
+    color: #999;
+}

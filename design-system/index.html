@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <link rel="icon" href="https://hybrid.concordia.ca/ni_moral/resources/icon.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design System</title>
+</head>
+
+
+<link rel="stylesheet" href="style.css">
+<script src="script.js"></script>
+
+<body>
+    <div class="container">
+        <h1>Design System</h1>
+        <div class="surface">
+            <h2>Principles</h2>
+            <p> Accessible to everyone: The design will use flexible and responsive layouts to ensure it correctly
+                displays in different devices and aspect ratios, and follow the WCAG guidelines to ensure it is
+                accessible to screen readers. It will also keep a consistent and relatively simple structure, to ensure
+                its navigability and functionality remains simple for screen readers or varying levels of computer
+                literacy. Components will be reused to maintain both coherence and scalability. Interactions will
+                remain simple, visible to ensure the viewer knows what elements they may interact with, and make any
+                state change or interaction obvious. Spacing, grids and organization shall also remain consistent and
+                balanced to clearly separate or group related elements. </p>
+        </div>
+
+        <div class="surface">
+            <h2>Grid</h2>
+            <p>Components can be placed in grid rows or flex layouts seamlessly to create order and structure.</p>
+            <div class="grid grid-auto">
+                <div class="surface" style="background: rgba(0,0,0,0.4)">Grid Box 1</div>
+                <div class="surface" style="background: rgba(0,0,0,0.4)">Grid Box 2</div>
+                <div class="surface" style="background: rgba(0,0,0,0.4)">Grid Box 3</div>
+            </div>
+        </div>
+
+        <div class="surface">
+            <h2>Spacing</h2>
+            <p>The system consistently utilizes spacing utility scales (xs, sm, md, lg, xl, xxl) to maintain rhythm.</p>
+            <div class="flex">
+                <div style="background: var(--color-primary); width: var(--spacing-xs); height: 20px;" title="spacing-xs"></div>
+                <div style="background: var(--color-primary); width: var(--spacing-sm); height: 20px;" title="spacing-sm"></div>
+                <div style="background: var(--color-primary); width: var(--spacing-md); height: 20px;" title="spacing-md"></div>
+                <div style="background: var(--color-primary); width: var(--spacing-lg); height: 20px;" title="spacing-lg"></div>
+                <div style="background: var(--color-primary); width: var(--spacing-xl); height: 20px;" title="spacing-xl"></div>
+                <div style="background: var(--color-primary); width: var(--spacing-xxl); height: 20px;" title="spacing-xxl"></div>
+            </div>
+        </div>
+
+        <div class="surface">
+            <h2>Responsive/Adaptive design breakpoints</h2>
+            <p>Layouts adapt gracefully below 768px for mobile devices, automatically adjusting container padding, scaling typography, and converting multi-column structures.</p>
+        </div>
+
+        <div class="surface">
+            <h2>Layers</h2>
+            <p>The system uses elevated translucent <strong>surface</strong> elements to layer content over the fixed background.</p>
+        </div>
+
+        <div class="surface">
+            <h2>Colors</h2>
+            <p>The foundation is dark, highlighting accent actions. Tints, backgrounds, and text variations ensure accessibility contrast requirements are consistently met.</p>
+            <div class="flex flex-wrap">
+                <div style="background: var(--color-background); width: 60px; height: 60px; border-radius: var(--radius-sm); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; font-size: 10px;">Bg</div>
+                <div style="background: var(--color-surface); width: 60px; height: 60px; border-radius: var(--radius-sm); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; font-size: 10px;">Surface</div>
+                <div style="background: var(--color-primary); width: 60px; height: 60px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--color-text-on-primary); font-size: 10px; font-weight: bold;">Primary</div>
+                <div style="background: var(--color-text); width: 60px; height: 60px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--color-background); font-size: 10px;">Text</div>
+            </div>
+        </div>
+
+        <div class="surface">
+            <h2>Typography</h2>
+            <p>Typography scales gracefully. Regular paragraph text is limited in width for better readability.</p>
+            <h1>Heading 1 Display</h1>
+            <h2>Heading 2 Display</h2>
+            <h3>Heading 3 Display</h3>
+            <p>Standard paragraph body copy describing structural font details.</p>
+            <a href="#">This is what a link looks like</a>
+        </div>
+
+        <div class="surface">
+            <h2>Aspect Ratio</h2>
+            <p>Images conform to specific ratios such as 16:9 and 1:1, organizing compositions logically across responsive viewports.</p>
+        </div>
+
+        <div class="surface">
+            <h2>Icons and Iconography</h2>
+            <p>Iconography visually supplements concepts and interactivity effectively. Standardized interactive cursors denote clear action boundaries.</p>
+        </div>
+
+        <div class="surface">
+            <h2>Components</h2>
+            <p>Interactive elements follow WCAG contrast and keyboard navigation standards.</p>
+
+            <div class="flex flex-wrap" style="margin-bottom: var(--spacing-lg);">
+                <button class="btn">Primary Action</button>
+                <button class="btn btn-secondary">Secondary Action</button>
+                <button class="btn" disabled>Disabled</button>
+            </div>
+
+            <div class="flex-col" style="max-width: 400px; margin-bottom: var(--spacing-lg);">
+                <input type="text" class="input" placeholder="Text Field Example..." />
+            </div>
+
+            <div class="flex-col">
+                <label class="checkbox-group">
+                    <input type="checkbox" checked> Filter Option A
+                </label>
+                <label class="radio-group">
+                    <input type="radio" name="r1" checked> Selection Output X
+                </label>
+                <label class="radio-group">
+                    <input type="radio" name="r1"> Selection Output Y
+                </label>
+            </div>
+        </div>
+    </div> <!-- end of container -->
+</body>
+
+</html>
