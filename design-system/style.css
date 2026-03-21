@@ -2,28 +2,82 @@
 /* CSS Variables (Tokens) Foundation                                         */
 /* ========================================================================= */
 :root {
-    /* Color Palette */
-    --color-background: #7a7a7a;
-    /* Dark grey as per user preference */
-    --color-surface: rgba(30, 30, 30, 0.7);
-    /* Translucent dark surface */
-    --color-surface-hover: rgba(50, 50, 50, 0.8);
-    --color-primary: #e79797;
-    /* Pinkish red accent */
-    --color-primary-hover: #fcebeb;
-    --color-primary-active: #d67a7a;
-    --color-text: #ffffff;
-    --color-text-muted: #e0e0e0;
-    --color-text-on-primary: #1a1a1a;
-    --color-border: #999999;
+    /* 11-Color Scale Generation Base Colors */
+    --color-bg-base: rgb(0, 22, 122);
+    --color-surf-base: rgba(30, 30, 30, 0.7);
+    --color-prim-base: #00eeff;
+    --color-text-base: #aaebff;
+
+    /* Background Scale */
+    --color-bg-50: color-mix(in srgb, var(--color-bg-base), white 80%);
+    --color-bg-100: color-mix(in srgb, var(--color-bg-base), white 64%);
+    --color-bg-200: color-mix(in srgb, var(--color-bg-base), white 48%);
+    --color-bg-300: color-mix(in srgb, var(--color-bg-base), white 32%);
+    --color-bg-400: color-mix(in srgb, var(--color-bg-base), white 16%);
+    --color-bg-500: var(--color-bg-base);
+    --color-bg-600: color-mix(in srgb, var(--color-bg-base), black 16%);
+    --color-bg-700: color-mix(in srgb, var(--color-bg-base), black 32%);
+    --color-bg-800: color-mix(in srgb, var(--color-bg-base), black 48%);
+    --color-bg-900: color-mix(in srgb, var(--color-bg-base), black 64%);
+    --color-bg-950: color-mix(in srgb, var(--color-bg-base), black 80%);
+
+    /* Surface Scale */
+    --color-surf-50: color-mix(in srgb, var(--color-surf-base), white 80%);
+    --color-surf-100: color-mix(in srgb, var(--color-surf-base), white 64%);
+    --color-surf-200: color-mix(in srgb, var(--color-surf-base), white 48%);
+    --color-surf-300: color-mix(in srgb, var(--color-surf-base), white 32%);
+    --color-surf-400: color-mix(in srgb, var(--color-surf-base), white 16%);
+    --color-surf-500: var(--color-surf-base);
+    --color-surf-600: color-mix(in srgb, var(--color-surf-base), black 16%);
+    --color-surf-700: color-mix(in srgb, var(--color-surf-base), black 32%);
+    --color-surf-800: color-mix(in srgb, var(--color-surf-base), black 48%);
+    --color-surf-900: color-mix(in srgb, var(--color-surf-base), black 64%);
+    --color-surf-950: color-mix(in srgb, var(--color-surf-base), black 80%);
+
+    /* Primary Scale */
+    --color-prim-50: color-mix(in srgb, var(--color-prim-base), white 80%);
+    --color-prim-100: color-mix(in srgb, var(--color-prim-base), white 64%);
+    --color-prim-200: color-mix(in srgb, var(--color-prim-base), white 48%);
+    --color-prim-300: color-mix(in srgb, var(--color-prim-base), white 32%);
+    --color-prim-400: color-mix(in srgb, var(--color-prim-base), white 16%);
+    --color-prim-500: var(--color-prim-base);
+    --color-prim-600: color-mix(in srgb, var(--color-prim-base), black 16%);
+    --color-prim-700: color-mix(in srgb, var(--color-prim-base), black 32%);
+    --color-prim-800: color-mix(in srgb, var(--color-prim-base), black 48%);
+    --color-prim-900: color-mix(in srgb, var(--color-prim-base), black 64%);
+    --color-prim-950: color-mix(in srgb, var(--color-prim-base), black 80%);
+
+    /* Text Scale */
+    --color-txt-50: color-mix(in srgb, var(--color-text-base), white 80%);
+    --color-txt-100: color-mix(in srgb, var(--color-text-base), white 64%);
+    --color-txt-200: color-mix(in srgb, var(--color-text-base), white 48%);
+    --color-txt-300: color-mix(in srgb, var(--color-text-base), white 32%);
+    --color-txt-400: color-mix(in srgb, var(--color-text-base), white 16%);
+    --color-txt-500: var(--color-text-base);
+    --color-txt-600: color-mix(in srgb, var(--color-text-base), black 16%);
+    --color-txt-700: color-mix(in srgb, var(--color-text-base), black 32%);
+    --color-txt-800: color-mix(in srgb, var(--color-text-base), black 48%);
+    --color-txt-900: color-mix(in srgb, var(--color-text-base), black 64%);
+    --color-txt-950: color-mix(in srgb, var(--color-text-base), black 80%);
+
+    /* Base Aliases to Ensure Layout Stability */
+    --color-background: var(--color-bg-500);
+    --color-surface: var(--color-surf-500);
+    --color-surface-hover: var(--color-surf-400);
+    --color-primary: var(--color-prim-500);
+    --color-primary-hover: var(--color-prim-300);
+    --color-primary-active: var(--color-prim-700);
+    --color-text: var(--color-txt-500);
+    --color-text-muted: var(--color-txt-700);
+    --color-text-on-primary: var(--color-bg-950);
+    --color-border: var(--color-bg-700);
     --color-error: #ff5252;
     --color-success: #4caf50;
-    --color-focus: #ffb6b6;
-    /* Visible focus outline color */
+    --color-focus: var(--color-prim-300);
 
     /* Typography Scale */
-    --font-family-base: Verdana, Geneva, Tahoma, sans-serif;
-    --font-family-heading: var(--font-family-base);
+    --font-family-base: "Play", sans-serif;
+    --font-family-heading: "Orbitron", sans-serif;
     --font-size-base: 1rem;
     /* 16px default */
     --font-size-sm: 0.875rem;
@@ -68,6 +122,24 @@
 /* ========================================================================= */
 /* Resets & Base Configuration (Accessibility & Flexibility)                 */
 /* ========================================================================= */
+.play-regular {
+    font-family: "Play", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.play-bold {
+    font-family: "Play", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.orbitron-regular {
+    font-family: "Orbitron", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
 
 /* Box sizing rules */
 *,
@@ -105,11 +177,11 @@ body {
     text-rendering: optimizeSpeed;
     line-height: var(--line-height-body);
     background-color: var(--color-background);
-    /* background-image: url('../resources/nimosana_darker.gif'); */
-    background-repeat: repeat;
-    background-position: top left;
+    background-image: url('../resources/submerged_20.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
     background-attachment: fixed;
-    background-size: 68px;
+    background-size: cover;
     color: var(--color-text);
     overflow-x: hidden;
     /* Avoid horizontal scrolling */
@@ -300,7 +372,7 @@ a:hover {
 }
 
 .input::placeholder {
-    color: var(--color-border);
+    color: var(--color-primary);
 }
 
 .input:focus {

@@ -5,6 +5,10 @@
     <link rel="icon" href="https://hybrid.concordia.ca/ni_moral/resources/icon.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
     <title>Design System</title>
 </head>
 
@@ -29,11 +33,31 @@
 
         <div class="surface">
             <h2>Grid</h2>
-            <p>Components can be placed in grid rows or flex layouts seamlessly to create order and structure.</p>
-            <div class="grid grid-auto">
+            <p>Components can be placed in grid rows or flex layouts seamlessly to create order and structure. The
+                <code>.grid-auto</code> class automatically fits columns (minimum 250px) into the available space, and
+                structural CSS properties can be used to span multiple rows or columns.
+            </p>
+
+            <h3>Auto-fit Grid (Dynamic Columns)</h3>
+            <p style="font-size: var(--font-size-sm); margin-bottom: var(--spacing-sm);">Adjusts automatically based on
+                container width using <code>grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))</code>.</p>
+            <div class="grid grid-auto" style="margin-bottom: var(--spacing-lg);">
                 <div class="surface" style="background: rgba(0,0,0,0.4)">Grid Box 1</div>
                 <div class="surface" style="background: rgba(0,0,0,0.4)">Grid Box 2</div>
                 <div class="surface" style="background: rgba(0,0,0,0.4)">Grid Box 3</div>
+            </div>
+
+            <h3>Custom Layouts with Spans</h3>
+            <p style="font-size: var(--font-size-sm); margin-bottom: var(--spacing-sm);">Demonstrates taking up more
+                space with <code>grid-column: span X</code> or <code>grid-row: span X</code>.</p>
+            <div class="grid" style="grid-template-columns: repeat(3, 1fr);">
+                <div class="surface" style="background: rgba(0,0,0,0.4); grid-column: span 2;">Span 2 Columns</div>
+                <div class="surface" style="background: rgba(0,0,0,0.4);">Span 1 Column</div>
+                <div class="surface"
+                    style="background: rgba(0,0,0,0.4); grid-row: span 2; display: flex; align-items: center;">Span 2
+                    Rows</div>
+                <div class="surface" style="background: rgba(0,0,0,0.4); grid-column: span 2;">Span 2 Columns</div>
+                <div class="surface" style="background: rgba(0,0,0,0.4); grid-column: span 2;">Span 2 Columns</div>
             </div>
         </div>
 
@@ -41,33 +65,157 @@
             <h2>Spacing</h2>
             <p>The system consistently utilizes spacing utility scales (xs, sm, md, lg, xl, xxl) to maintain rhythm.</p>
             <div class="flex">
-                <div style="background: var(--color-primary); width: var(--spacing-xs); height: 20px;" title="spacing-xs"></div>
-                <div style="background: var(--color-primary); width: var(--spacing-sm); height: 20px;" title="spacing-sm"></div>
-                <div style="background: var(--color-primary); width: var(--spacing-md); height: 20px;" title="spacing-md"></div>
-                <div style="background: var(--color-primary); width: var(--spacing-lg); height: 20px;" title="spacing-lg"></div>
-                <div style="background: var(--color-primary); width: var(--spacing-xl); height: 20px;" title="spacing-xl"></div>
-                <div style="background: var(--color-primary); width: var(--spacing-xxl); height: 20px;" title="spacing-xxl"></div>
+                <div style="background: var(--color-primary); width: var(--spacing-xs); height: 20px;"
+                    title="spacing-xs"></div>
+                <div style="background: var(--color-primary); width: var(--spacing-sm); height: 20px;"
+                    title="spacing-sm"></div>
+                <div style="background: var(--color-primary); width: var(--spacing-md); height: 20px;"
+                    title="spacing-md"></div>
+                <div style="background: var(--color-primary); width: var(--spacing-lg); height: 20px;"
+                    title="spacing-lg"></div>
+                <div style="background: var(--color-primary); width: var(--spacing-xl); height: 20px;"
+                    title="spacing-xl"></div>
+                <div style="background: var(--color-primary); width: var(--spacing-xxl); height: 20px;"
+                    title="spacing-xxl"></div>
             </div>
         </div>
 
         <div class="surface">
             <h2>Responsive/Adaptive design breakpoints</h2>
-            <p>Layouts adapt gracefully below 768px for mobile devices, automatically adjusting container padding, scaling typography, and converting multi-column structures.</p>
+            <p>Layouts adapt gracefully below <code>768px</code> for mobile devices. This is achieved using a
+                <code>@media (max-width: 768px)</code> query in the CSS. Inside this breakpoint, root variables like
+                <code>--spacing-xl</code> are reduced to condense vertical rhythm. The <code>.container</code> class
+                receives smaller padding, and elements like <code>.btn</code> are set to <code>width: 100%</code> to
+                expand and become touch-targets across the screen. Multi-column structures powered by
+                <code>.grid-auto</code> automatically stack correctly into single columns as their
+                <code>minmax(250px, 1fr)</code> constraint is triggered by the narrowed viewport.
+            </p>
         </div>
 
         <div class="surface">
             <h2>Layers</h2>
-            <p>The system uses elevated translucent <strong>surface</strong> elements to layer content over the fixed background.</p>
+            <p>The system utilizes elevated translucent <strong>surface</strong> elements to layer content over the
+                fixed background. This glassmorphism effect is ensured by the <code>.surface</code> class, which applies
+                a semi-transparent base (<code>background-color: var(--color-surface)</code>) paired with
+                <code>backdrop-filter: blur(8px)</code>. Depth is further emphasized via a subtle
+                <code>box-shadow: var(--shadow-sm)</code> and an inner border
+                (<code>border: 1px solid rgba(255, 255, 255, 0.05)</code>) to visually separate elements from the
+                background pattern.
+            </p>
         </div>
 
         <div class="surface">
             <h2>Colors</h2>
-            <p>The foundation is dark, highlighting accent actions. Tints, backgrounds, and text variations ensure accessibility contrast requirements are consistently met.</p>
-            <div class="flex flex-wrap">
-                <div style="background: var(--color-background); width: 60px; height: 60px; border-radius: var(--radius-sm); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; font-size: 10px;">Bg</div>
-                <div style="background: var(--color-surface); width: 60px; height: 60px; border-radius: var(--radius-sm); border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; font-size: 10px;">Surface</div>
-                <div style="background: var(--color-primary); width: 60px; height: 60px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--color-text-on-primary); font-size: 10px; font-weight: bold;">Primary</div>
-                <div style="background: var(--color-text); width: 60px; height: 60px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: var(--color-background); font-size: 10px;">Text</div>
+            <p>The foundation is dark, highlighting accent actions. Tints, backgrounds, and text variations ensure
+                accessibility contrast requirements are consistently met.</p>
+            <style>
+                .swatch-row {
+                    display: flex;
+                    height: 40px;
+                    border-radius: var(--radius-sm);
+                    overflow: hidden;
+                    margin-bottom: var(--spacing-lg);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                }
+
+                .swatch {
+                    flex: 1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 10px;
+                    font-family: monospace;
+                    transition: transform var(--transition-fast);
+                }
+
+                .swatch:hover {
+                    transform: scaleY(1.1);
+                    box-shadow: var(--shadow-md);
+                    z-index: 2;
+                    position: relative;
+                }
+
+                .swatch-base {
+                    font-weight: bold;
+                    border-top: 3px solid currentColor;
+                    border-bottom: 3px solid currentColor;
+                }
+
+                .scale-label {
+                    margin-bottom: var(--spacing-xs);
+                    font-size: var(--font-size-md);
+                    font-family: var(--font-family-heading);
+                }
+
+                .bg-checker {
+                    background-image: repeating-linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444), repeating-linear-gradient(45deg, #444 25%, #333 25%, #333 75%, #444 75%, #444);
+                    background-position: 0 0, 10px 10px;
+                    background-size: 20px 20px;
+                }
+            </style>
+
+            <h3 class="scale-label">Background Scale</h3>
+            <div class="swatch-row">
+                <div class="swatch" style="background: var(--color-bg-50); color: black;" title="bg-50">50</div>
+                <div class="swatch" style="background: var(--color-bg-100); color: black;" title="bg-100">100</div>
+                <div class="swatch" style="background: var(--color-bg-200); color: black;" title="bg-200">200</div>
+                <div class="swatch" style="background: var(--color-bg-300); color: black;" title="bg-300">300</div>
+                <div class="swatch" style="background: var(--color-bg-400); color: black;" title="bg-400">400</div>
+                <div class="swatch swatch-base" style="background: var(--color-bg-500); color: white;"
+                    title="bg-500 (Base)">Base</div>
+                <div class="swatch" style="background: var(--color-bg-600); color: white;" title="bg-600">600</div>
+                <div class="swatch" style="background: var(--color-bg-700); color: white;" title="bg-700">700</div>
+                <div class="swatch" style="background: var(--color-bg-800); color: white;" title="bg-800">800</div>
+                <div class="swatch" style="background: var(--color-bg-900); color: white;" title="bg-900">900</div>
+                <div class="swatch" style="background: var(--color-bg-950); color: white;" title="bg-950">950</div>
+            </div>
+
+            <h3 class="scale-label">Primary Scale</h3>
+            <div class="swatch-row">
+                <div class="swatch" style="background: var(--color-prim-50); color: black;" title="prim-50">50</div>
+                <div class="swatch" style="background: var(--color-prim-100); color: black;" title="prim-100">100</div>
+                <div class="swatch" style="background: var(--color-prim-200); color: black;" title="prim-200">200</div>
+                <div class="swatch" style="background: var(--color-prim-300); color: black;" title="prim-300">300</div>
+                <div class="swatch" style="background: var(--color-prim-400); color: black;" title="prim-400">400</div>
+                <div class="swatch swatch-base" style="background: var(--color-prim-500); color: white;"
+                    title="prim-500 (Base)">Base</div>
+                <div class="swatch" style="background: var(--color-prim-600); color: white;" title="prim-600">600</div>
+                <div class="swatch" style="background: var(--color-prim-700); color: white;" title="prim-700">700</div>
+                <div class="swatch" style="background: var(--color-prim-800); color: white;" title="prim-800">800</div>
+                <div class="swatch" style="background: var(--color-prim-900); color: white;" title="prim-900">900</div>
+                <div class="swatch" style="background: var(--color-prim-950); color: white;" title="prim-950">950</div>
+            </div>
+
+            <h3 class="scale-label">Text Scale</h3>
+            <div class="swatch-row">
+                <div class="swatch" style="background: var(--color-txt-50); color: black;" title="txt-50">50</div>
+                <div class="swatch" style="background: var(--color-txt-100); color: black;" title="txt-100">100</div>
+                <div class="swatch" style="background: var(--color-txt-200); color: black;" title="txt-200">200</div>
+                <div class="swatch" style="background: var(--color-txt-300); color: black;" title="txt-300">300</div>
+                <div class="swatch" style="background: var(--color-txt-400); color: black;" title="txt-400">400</div>
+                <div class="swatch swatch-base" style="background: var(--color-txt-500); color: black;"
+                    title="txt-500 (Base)">Base</div>
+                <div class="swatch" style="background: var(--color-txt-600); color: white;" title="txt-600">600</div>
+                <div class="swatch" style="background: var(--color-txt-700); color: white;" title="txt-700">700</div>
+                <div class="swatch" style="background: var(--color-txt-800); color: white;" title="txt-800">800</div>
+                <div class="swatch" style="background: var(--color-txt-900); color: white;" title="txt-900">900</div>
+                <div class="swatch" style="background: var(--color-txt-950); color: white;" title="txt-950">950</div>
+            </div>
+
+            <h3 class="scale-label">Surface Scale (Translucent)</h3>
+            <div class="swatch-row bg-checker">
+                <div class="swatch" style="background: var(--color-surf-50); color: black;" title="surf-50">50</div>
+                <div class="swatch" style="background: var(--color-surf-100); color: black;" title="surf-100">100</div>
+                <div class="swatch" style="background: var(--color-surf-200); color: black;" title="surf-200">200</div>
+                <div class="swatch" style="background: var(--color-surf-300); color: black;" title="surf-300">300</div>
+                <div class="swatch" style="background: var(--color-surf-400); color: white;" title="surf-400">400</div>
+                <div class="swatch swatch-base" style="background: var(--color-surf-500); color: white;"
+                    title="surf-500 (Base)">Base</div>
+                <div class="swatch" style="background: var(--color-surf-600); color: white;" title="surf-600">600</div>
+                <div class="swatch" style="background: var(--color-surf-700); color: white;" title="surf-700">700</div>
+                <div class="swatch" style="background: var(--color-surf-800); color: white;" title="surf-800">800</div>
+                <div class="swatch" style="background: var(--color-surf-900); color: white;" title="surf-900">900</div>
+                <div class="swatch" style="background: var(--color-surf-950); color: white;" title="surf-950">950</div>
             </div>
         </div>
 
@@ -83,17 +231,27 @@
 
         <div class="surface">
             <h2>Aspect Ratio</h2>
-            <p>Images conform to specific ratios such as 16:9 and 1:1, organizing compositions logically across responsive viewports.</p>
+            <p>Images conform to specific ratios such as 16:9 and 1:1, organizing compositions logically across
+                responsive viewports.</p>
         </div>
 
         <div class="surface">
             <h2>Icons and Iconography</h2>
-            <p>Iconography visually supplements concepts and interactivity effectively. Standardized interactive cursors denote clear action boundaries.</p>
+            <p>Iconography visually supplements concepts and interactivity effectively. Standardized interactive cursors
+                denote clear action boundaries.</p>
         </div>
 
         <div class="surface">
             <h2>Components</h2>
-            <p>Interactive elements follow WCAG contrast and keyboard navigation standards.</p>
+            <p>Interactive elements follow WCAG contrast and keyboard navigation standards. Focus states are strictly
+                enforced explicitly globally through the <code>:focus-visible</code> pseudo-class, applying a highly
+                visible <code>3px solid var(--color-focus)</code> outline, meaning keyboard users never lose track of
+                their position. For color contrast, typography variables like <code>--color-text-on-primary</code> are
+                specifically chosen to guarantee legibility against the <code>--color-primary</code> background. The
+                <code>.btn</code> class provides tactile visual feedback by shifting the element up
+                (<code>transform: translateY(-2px)</code>) and increasing its <code>box-shadow</code> during a hover
+                through <code>transition: all var(--transition-fast)</code>.
+            </p>
 
             <div class="flex flex-wrap" style="margin-bottom: var(--spacing-lg);">
                 <button class="btn">Primary Action</button>
@@ -109,6 +267,9 @@
                 <label class="checkbox-group">
                     <input type="checkbox" checked> Filter Option A
                 </label>
+                <label class="checkbox-group">
+                    <input type="checkbox"> Filter Option B
+                </label>
                 <label class="radio-group">
                     <input type="radio" name="r1" checked> Selection Output X
                 </label>
@@ -117,7 +278,7 @@
                 </label>
             </div>
         </div>
-    </div> <!-- end of container -->
+    </div>
 </body>
 
 </html>
