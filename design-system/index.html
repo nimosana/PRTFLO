@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Electrolize&family=Jockey+One&display=swap"
+        rel="stylesheet">
     <title>Design System</title>
 </head>
 
@@ -21,86 +21,106 @@
         <h1>Design System</h1>
         <div class="surface">
             <h2>Principles</h2>
-            <p> Accessible to everyone: The design will use flexible and responsive layouts to ensure it correctly
-                displays in different devices and aspect ratios, and follow the WCAG guidelines to ensure it is
-                accessible to screen readers. It will also keep a consistent and relatively simple structure, to ensure
-                its navigability and functionality remains simple for screen readers or varying levels of computer
-                literacy. Components will be reused to maintain both coherence and scalability. Interactions will
-                remain simple, visible to ensure the viewer knows what elements they may interact with, and make any
-                state change or interaction obvious. Spacing, grids and organization shall also remain consistent and
-                balanced to clearly separate or group related elements. </p>
+            <p> My design system follows the philosophy of the Adobe Spectrum and IBM carbon references provided, the
+                following sections are designed to make the website navigation as accessible and easy to use. Using
+                flexible and responsive layouts to ensure it correctly displays across different devices and aspect
+                ratios. It also keeps a consistent and relatively simple structure, and follows the WCAG guidelines to
+                ensure it is accessible to screen readers. Components use reusable classes to maintain coherence and
+                scalability. The structure of the website and interactive elements are kept simple to ensure navigation
+                remains intuitive. States of interactive elements, hovers and click interactions are made obvious to
+                users of varying levels of computer literacy. Spacing, grids and organization also remain consistent and
+                balanced to clearly separate and group different elements.
+            </p>
         </div>
 
         <div class="surface">
             <h2>Grid</h2>
-            <p>Components can be placed in grid rows or flex layouts seamlessly to create order and structure. The
-                <code>.grid-auto</code> class automatically fits columns (minimum 250px) into the available space, and
-                structural CSS properties can be used to span multiple rows or columns.
+            <p>Components can be placed in grid rows or flex layouts to group elements and create order and structure.
+                The <code>.grid-auto</code> class automatically fits columns (minimum 250px) into the available space.
+                This allows larger displays to have more columns, while ensuring smaller displays don't have thin, silly
+                looking columns.
             </p>
 
             <h3>Auto-fit Grid (Dynamic Columns)</h3>
-            <p style="font-size: var(--font-size-sm); margin-bottom: var(--spacing-sm);">Adjusts automatically based on
-                container width using <code>grid-template-columns: repeat(auto-fit, minmax(250px, 1fr))</code>.</p>
             <div class="grid grid-auto" style="margin-bottom: var(--spacing-lg);">
-                <div class="surface" style="background: rgba(0,0,0,0.4)">Grid Box 1</div>
-                <div class="surface" style="background: rgba(0,0,0,0.4)">Grid Box 2</div>
-                <div class="surface" style="background: rgba(0,0,0,0.4)">Grid Box 3</div>
-            </div>
-
-            <h3>Custom Layouts with Spans</h3>
-            <p style="font-size: var(--font-size-sm); margin-bottom: var(--spacing-sm);">Demonstrates taking up more
-                space with <code>grid-column: span X</code> or <code>grid-row: span X</code>.</p>
-            <div class="grid" style="grid-template-columns: repeat(3, 1fr);">
-                <div class="surface" style="background: rgba(0,0,0,0.4); grid-column: span 2;">Span 2 Columns</div>
-                <div class="surface" style="background: rgba(0,0,0,0.4);">Span 1 Column</div>
-                <div class="surface"
-                    style="background: rgba(0,0,0,0.4); grid-row: span 2; display: flex; align-items: center;">Span 2
-                    Rows</div>
-                <div class="surface" style="background: rgba(0,0,0,0.4); grid-column: span 2;">Span 2 Columns</div>
-                <div class="surface" style="background: rgba(0,0,0,0.4); grid-column: span 2;">Span 2 Columns</div>
+                <div class="surface" style="background: rgba(0,0,0,0.4)">
+                    <h3> Grid Box 1</h3>
+                    <p>Meow meow meow I am a cat. I like to sleep and eat. But sometimes I like to knock things off of
+                        tables, because it is fun. Maybe I am not such a good cat. Meow meow meow I am a cat. I like to
+                        sleep and eat. But sometimes I like to knock things off of
+                        tables, because it is fun. Maybe I am not such a good cat. </p>
+                </div>
+                <div class="surface" style="background: rgba(0,0,0,0.4)">
+                    <h3> Grid Box 2</h3>
+                    <p> Meow meow meow I am a cat. I like to sleep and eat. But sometimes I like to knock things off of
+                        tables, because it is fun. Maybe I am not such a good cat.</p>
+                </div>
+                <div class="surface" style="background: rgba(0,0,0,0.4)">
+                    <h3> Grid Box 3</h3>
+                    <p>I'm a good dog, sitting patiently with bright eyes, waiting for praise like you’ve done
+                        everything
+                        right in the world. But then you go and sneak off, knock something over, and pretend it wasn’t
+                        you—maybe not such a
+                        good dog after all.</p>
+                </div>
             </div>
         </div>
 
         <div class="surface">
             <h2>Spacing</h2>
-            <p>The system consistently utilizes spacing utility scales (xs, sm, md, lg, xl, xxl) to maintain rhythm.</p>
-            <div class="flex">
-                <div style="background: var(--color-primary); width: var(--spacing-xs); height: 20px;"
-                    title="spacing-xs"></div>
-                <div style="background: var(--color-primary); width: var(--spacing-sm); height: 20px;"
-                    title="spacing-sm"></div>
-                <div style="background: var(--color-primary); width: var(--spacing-md); height: 20px;"
-                    title="spacing-md"></div>
-                <div style="background: var(--color-primary); width: var(--spacing-lg); height: 20px;"
-                    title="spacing-lg"></div>
-                <div style="background: var(--color-primary); width: var(--spacing-xl); height: 20px;"
-                    title="spacing-xl"></div>
-                <div style="background: var(--color-primary); width: var(--spacing-xxl); height: 20px;"
-                    title="spacing-xxl"></div>
+            <p>Predetermined spacing values are used to maintain consistent spacing throughout the design system, using
+                rem units for scalability and accessibility.</p>
+            <div class="flex-col" style="margin-top: var(--spacing-md);">
+                <div class="flex" style="align-items: center;">
+                    <div style="background: var(--color-primary); width: var(--spacing-xs); height: 20px;"
+                        title="spacing-xs"></div>
+                    <span>xs (0.25rem)</span>
+                </div>
+                <div class="flex" style="align-items: center;">
+                    <div style="background: var(--color-primary); width: var(--spacing-sm); height: 20px;"
+                        title="spacing-sm"></div>
+                    <span>sm (0.5rem)</span>
+                </div>
+                <div class="flex" style="align-items: center;">
+                    <div style="background: var(--color-primary); width: var(--spacing-md); height: 20px;"
+                        title="spacing-md"></div>
+                    <span>md (1rem)</span>
+                </div>
+                <div class="flex" style="align-items: center;">
+                    <div style="background: var(--color-primary); width: var(--spacing-lg); height: 20px;"
+                        title="spacing-lg"></div>
+                    <span>lg (2rem)</span>
+                </div>
+                <div class="flex" style="align-items: center;">
+                    <div style="background: var(--color-primary); width: var(--spacing-xl); height: 20px;"
+                        title="spacing-xl"></div>
+                    <span>xl (3rem)</span>
+                </div>
+                <div class="flex" style="align-items: center;">
+                    <div style="background: var(--color-primary); width: var(--spacing-xxl); height: 20px;"
+                        title="spacing-xxl"></div>
+                    <span>xxl (6rem)</span>
+                </div>
             </div>
         </div>
 
         <div class="surface">
             <h2>Responsive/Adaptive design breakpoints</h2>
-            <p>Layouts adapt gracefully below <code>768px</code> for mobile devices. This is achieved using a
-                <code>@media (max-width: 768px)</code> query in the CSS. Inside this breakpoint, root variables like
-                <code>--spacing-xl</code> are reduced to condense vertical rhythm. The <code>.container</code> class
-                receives smaller padding, and elements like <code>.btn</code> are set to <code>width: 100%</code> to
-                expand and become touch-targets across the screen. Multi-column structures powered by
-                <code>.grid-auto</code> automatically stack correctly into single columns as their
-                <code>minmax(250px, 1fr)</code> constraint is triggered by the narrowed viewport.
+            <p>Layouts adapt smoothly for mobile screens below 768px using a responsive breakpoint. At this size,
+                spacing is reduced to create a tighter vertical rhythm, and containers use less padding to better fit
+                smaller displays. Interactive elements like buttons expand to fill the available width, making them
+                easier to tap. Multi-column layouts automatically collapse into a single column as the screen narrows,
+                ensuring content remains readable and well-structured.
             </p>
         </div>
 
         <div class="surface">
             <h2>Layers</h2>
             <p>The system utilizes elevated translucent <strong>surface</strong> elements to layer content over the
-                fixed background. This glassmorphism effect is ensured by the <code>.surface</code> class, which applies
-                a semi-transparent base (<code>background-color: var(--color-surface)</code>) paired with
-                <code>backdrop-filter: blur(8px)</code>. Depth is further emphasized via a subtle
-                <code>box-shadow: var(--shadow-sm)</code> and an inner border
-                (<code>border: 1px solid rgba(255, 255, 255, 0.05)</code>) to visually separate elements from the
-                background pattern.
+                fixed background, creating a pronounced sense of depth. This glassmorphism aesthetic is achieved by
+                combining a semi-transparent base with a strong background blur. Elements are further pulled forward
+                using drop shadows and border effects. Additionally, Headers use a subtle shadow and glow to stand out
+                and make the website feel more polished.
             </p>
         </div>
 
@@ -221,49 +241,62 @@
 
         <div class="surface">
             <h2>Typography</h2>
-            <p>Typography scales gracefully. Regular paragraph text is limited in width for better readability.</p>
+            <p>The chosen fonts naturally complement each other to create a cohesive aesthetic, the underlying code
+                automatically uses <strong> Aldrich </strong> for headings and <strong> Electrolize </strong> for body
+                text, to differentiate their hierarchy, and to keep the code simple and scalable. The fonts were chosen
+                for their futuristic but clean aesthetic. </p>
             <h1>Heading 1 Display</h1>
             <h2>Heading 2 Display</h2>
             <h3>Heading 3 Display</h3>
-            <p>Standard paragraph body copy describing structural font details.</p>
-            <a href="#">This is what a link looks like</a>
+            <p>Example of a standard paragraph, using the <strong>Electrolize</strong> font. Links are styled with the
+                primary color
+                and underlined on hover to indicate interactivity. <a href="#">This is what a link looks like!</a></p>
+
         </div>
 
         <div class="surface">
             <h2>Aspect Ratio</h2>
-            <p>Images conform to specific ratios such as 16:9 and 1:1, organizing compositions logically across
-                responsive viewports.</p>
+            <p>Images conform to specific ratios such as 16:9, 4:3 and 1:1, these ratios are the most commonly used in
+                the digital space, and consequently in my works, consistency across the website is key to creating
+                a cohesive aesthetic.</p>
         </div>
 
         <div class="surface">
             <h2>Icons and Iconography</h2>
-            <p>Iconography visually supplements concepts and interactivity effectively. Standardized interactive cursors
-                denote clear action boundaries.</p>
+            <p>In this design system, iconography is utilized to provide clear visual symbols that represent key ideas,
+                actions, or narratives directly relating to the portfolio's content. By using universally understood
+                icons in place of or alongside text, they simplify complex concepts and enable immediate, intuitive
+                interactivity without taking up unnecessary space. These icons provide a simple and highly effective way
+                to communicate information at a glance, ensuring that the navigation remains accessible while
+                simultaneously enhancing the overall futuristic aesthetic.</p>
         </div>
 
         <div class="surface">
             <h2>Components</h2>
-            <p>Interactive elements follow WCAG contrast and keyboard navigation standards. Focus states are strictly
-                enforced explicitly globally through the <code>:focus-visible</code> pseudo-class, applying a highly
-                visible <code>3px solid var(--color-focus)</code> outline, meaning keyboard users never lose track of
-                their position. For color contrast, typography variables like <code>--color-text-on-primary</code> are
-                specifically chosen to guarantee legibility against the <code>--color-primary</code> background. The
-                <code>.btn</code> class provides tactile visual feedback by shifting the element up
-                (<code>transform: translateY(-2px)</code>) and increasing its <code>box-shadow</code> during a hover
-                through <code>transition: all var(--transition-fast)</code>.
+            <p>Interactive elements follow WCAG contrast and keyboard navigation standards. Focus states are clearly
+                visible across the site, making it easy for keyboard users to track their position. Text colors are
+                chosen for strong readability against the background. Buttons and other interactive elements also
+                provide clear visual feedback on click, and subtly lift and deepen their shadow on hover.
             </p>
-
-            <div class="flex flex-wrap" style="margin-bottom: var(--spacing-lg);">
+            <h3 style="margin-top: var(--spacing-xl);">Buttons</h3>
+            <div class="flex flex-wrap" style="margin-bottom: var(--spacing-xl);">
                 <button class="btn">Primary Action</button>
                 <button class="btn btn-secondary">Secondary Action</button>
                 <button class="btn" disabled>Disabled</button>
             </div>
-
-            <div class="flex-col" style="max-width: 400px; margin-bottom: var(--spacing-lg);">
-                <input type="text" class="input" placeholder="Text Field Example..." />
+            <h3 style="margin-top: var(--spacing-xl);">Button Image</h3>
+            <div class="flex flex-wrap" style="margin-bottom: var(--spacing-xl);">
+                <button class="btn-image" title="Image Card Button" aria-label="Image Card Button">
+                    <img src="../resources/square.webp" alt="Card Image Icon" />
+                </button>
             </div>
 
-            <div class="flex-col">
+            <h3>Input</h3>
+            <div class="flex-col" style="max-width: 400px; margin-bottom: var(--spacing-xl);">
+                <input type="text" class="input" placeholder="Text Field Example..." />
+            </div>
+            <h3>Checkboxes and Radio Buttons</h3>
+            <div class="flex-col" style="margin-bottom: var(--spacing-xl);">
                 <label class="checkbox-group">
                     <input type="checkbox" checked> Filter Option A
                 </label>
@@ -276,6 +309,72 @@
                 <label class="radio-group">
                     <input type="radio" name="r1"> Selection Output Y
                 </label>
+            </div>
+
+            <h3 style="margin-top: var(--spacing-xl);">Dropdown Menu</h3>
+            <div class="flex-col" style="max-width: 400px; margin-bottom: var(--spacing-xl);">
+                <select class="input select" aria-label="Dropdown Menu">
+                    <option value="" disabled selected>Select an option...</option>
+                    <option value="1">System Override</option>
+                    <option value="2">Initialize Sequence</option>
+                    <option value="3">Abort</option>
+                </select>
+            </div>
+
+            <h3 style="margin-top: var(--spacing-xl);">Cards</h3>
+            <div class="grid grid-auto" style="margin-bottom: var(--spacing-xl);">
+                <div class="card">
+                    <h4>Card Title</h4>
+                    <p style="font-size: var(--font-size-sm); margin-bottom: 0;">Cards are contained interactive
+                        elements that can elevate when hovered.</p>
+                </div>
+                <div class="card">
+                    <h4>System Status</h4>
+                    <p style="font-size: var(--font-size-sm); margin-bottom: 0;">Rahhhh meow meow or something</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: var(--spacing-xl);">Progress</h3>
+            <div class="flex-col" style="max-width: 400px; margin-bottom: var(--spacing-xl);">
+                <label style="font-size: var(--font-size-sm); color: var(--color-primary);">Downloading more
+                    RAM...</label>
+                <progress value="65" max="100">65%</progress>
+            </div>
+
+            <h3 style="margin-top: var(--spacing-xl);">Tooltips</h3>
+            <div class="flex flex-wrap" style="margin-bottom: var(--spacing-xl);">
+                <span class="tooltip-container" tabindex="0" data-tooltip="This is extra info!">Hover or focus me for
+                    info</span>
+                <span class="tooltip-container" style="color: var(--color-primary);" tabindex="0"
+                    data-tooltip="System diagnostic active">Hover me too</span>
+            </div>
+
+            <h3 style="margin-top: var(--spacing-xl);">Alerts</h3>
+            <div class="flex-col" style="margin-bottom: var(--spacing-xl);">
+                <div class="alert">
+                    <strong>Notice:</strong> I acknowledge the use of AI for certain elements of this website.
+                </div>
+                <div class="alert alert-success">
+                    <strong>Success:</strong> I am a cat meow meow meow meow.
+                </div>
+                <div class="alert alert-error">
+                    <strong>Error:</strong> I am a dog that woofs.
+                </div>
+            </div>
+
+            <h3 style="margin-top: var(--spacing-xl);">Dialog Boxes</h3>
+            <div style="margin-bottom: var(--spacing-xl);">
+                <button class="btn" onclick="document.getElementById('demo-dialog').showModal()">Open Dialog
+                    modal</button>
+                <dialog id="demo-dialog">
+                    <h3 style="margin-top: 0;">Confirmation Required</h3>
+                    <p>Are you sure you want to turn into a big woofing dog?</p>
+                    <div class="flex" style="justify-content: flex-end; margin-top: var(--spacing-lg);">
+                        <button class="btn btn-secondary"
+                            onclick="document.getElementById('demo-dialog').close()">Cancel</button>
+                        <button class="btn" onclick="document.getElementById('demo-dialog').close()">Confirm</button>
+                    </div>
+                </dialog>
             </div>
         </div>
     </div>
