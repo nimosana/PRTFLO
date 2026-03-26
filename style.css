@@ -205,10 +205,11 @@ h2 {
 }
 
 h3 {
-    font-size: var(--font-size-lg);
+    font-size: clamp(var(--font-size-md), 3vw, var(--font-size-lg));
 }
 
 p {
+    font-size: clamp(var(--font-size-md), 2.5vw, var(--font-size-lg));
     margin-bottom: var(--spacing-md);
     color: var(--color-text);
     max-width: 80ch;
@@ -601,7 +602,10 @@ nav.surface {
 .navbar::before {
     content: "";
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: var(--color-surface);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
