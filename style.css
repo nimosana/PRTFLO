@@ -624,7 +624,7 @@ nav.surface {
 
 .nav-brand .nav-logo {
     font-family: var(--font-family-heading);
-    font-size: var(--font-size-lg);
+    font-size: clamp(var(--font-size-lg), 5vw, var(--font-size-xl));
     font-weight: 700;
     color: var(--color-primary);
     text-decoration: none;
@@ -690,7 +690,7 @@ nav.surface {
 .nav-link {
     text-decoration: none;
     color: var(--color-text);
-    font-size: var(--font-size-base);
+    font-size: clamp(var(--font-size-lg), 5vw, var(--font-size-xl));
     font-weight: bold;
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--radius-sm);
