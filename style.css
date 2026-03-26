@@ -723,16 +723,17 @@ footer {
         display: block;
     }
 
+    .nav-container {
+        flex-wrap: wrap;
+    }
+
     .nav-menu {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
+        flex-basis: 100%;
         flex-direction: column;
-        background-color: rgba(30, 30, 30, 0.75);
-        backdrop-filter: blur(32px);
-        -webkit-backdrop-filter: blur(32px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        background-color: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        border-bottom: none;
         gap: 0;
         max-height: 0;
         overflow: hidden;
@@ -742,7 +743,8 @@ footer {
 
     .navbar[data-expanded="true"] .nav-menu {
         max-height: 400px;
-        padding: var(--spacing-md) 0;
+        padding-top: var(--spacing-sm);
+        margin-top: var(--spacing-sm);
         border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
