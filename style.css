@@ -297,6 +297,42 @@ a:hover {
     flex-wrap: wrap;
 }
 
+/* Bio Specific Layout */
+.bio-layout {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: var(--spacing-xl);
+    align-items: start;
+}
+
+.bio-image-wrapper {
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    display: flex;
+    align-items: flex-start;
+    padding: var(--spacing-xl);
+    box-shadow: var(--shadow-md), 0 12px 32px rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 100%;
+}
+
+.bio-text-wrapper {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: center;
+    width: 100%;
+}
+.bio-text-wrapper h2 {
+    text-align: center;
+}
+.bio-text-wrapper p {
+    margin: 0 auto var(--spacing-md) auto;
+}
+
 /* ========================================================================= */
 /* UI Components                                                             */
 /* ========================================================================= */
@@ -735,6 +771,16 @@ footer {
 
     .btn {
         width: 100%;
+    }
+
+    .bio-layout {
+        display: flex;
+        flex-direction: column;
+    }
+    .bio-image-wrapper {
+        margin: 0 auto var(--spacing-lg) auto;
+        width: 100%;
+        max-width: 350px;
     }
 
     .nav-toggle {
