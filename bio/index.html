@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 
 <head>
-    <link rel="icon" href="https://hybrid.concordia.ca/ni_moral/resources/icon.png" type="image/png">
+    <link rel="icon" href="../resources/icon.png" type="image/png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,7 +10,7 @@
     <script src="https://unpkg.com/@strudel/web@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Electrolize&family=Jockey+One&display=swap"
         rel="stylesheet">
-    <title>Biography</title>
+    <title>Biography - Nicolas M-S</title>
 </head>
 
 
@@ -21,8 +21,9 @@
     <nav class="navbar surface" aria-label="Main Navigation">
         <div class="nav-container">
             <div class="nav-brand">
-                <a href="../index.html" class="nav-logo">Nimosana</a>
+                <a href="../index.html" class="nav-logo">Nicolas M-S</a>
             </div>
+
             <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
                 <span class="hamburger"></span>
             </button>
@@ -36,16 +37,17 @@
 
     <main class="container bio-layout">
         <div class="bio-image-wrapper">
-            <img src="../resources/porto.jpg" alt="Nicolas Morales-Sanabria Portrait"
-                style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; z-index: 0;">
-            <div
-                style="position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, transparent 33%); z-index: 1;">
-            </div>
-            <div style="position: relative; z-index: 2; display: flex; flex-direction: column; width: 100%;">
+            <img src="../resources/porto.jpg" alt="Nicolas Morales-Sanabria Portrait">
+            <div class="portrait-overlay"></div>
+            <div class="portrait-content">
                 <h2 class="portrait-title" style="margin-bottom: var(--spacing-xs);">Nicolas Morales-Sanabria</h2>
-                <h3 style="margin-bottom: 0; color: var(--color-text);">A.K.A. Nimosana</h3>
+                <h3 style="margin-bottom: var(--spacing-md); color: var(--color-text);">A.K.A. Nimosana</h3>
+                <h3 class="portrait-title" style="margin-bottom: var(--spacing-xs);">Languages</h3>
+                <h3 style="margin-bottom: 0; color: var(--color-text);">English, Français, Español</h3>
             </div>
         </div>
+
+
 
         <div id="bio" class="surface bio-text-wrapper">
             <h2>Artist Statement</h2>
@@ -58,11 +60,17 @@
                 studying Computer Science. I am passionate about technology and design, and I am always looking for new
                 challenges. I am a quick learner and I am able to pick up new skills very quickly. I am also a team
                 player and I am able to work well with others.</p>
-            <h2>Artist Résumé</h2>
-            <p>I am a digital artist and musician from Montreal, Canada. I am a student at Concordia University,
-                studying Computer Science. I am passionate about technology and design, and I am always looking for new
-                challenges. I am a quick learner and I am able to pick up new skills very quickly. I am also a team
-                player and I am able to work well with others.</p>
+            <h2>Education</h2>
+            <h3>Present - BFA Specialization in Computation Arts, Concordia University</h3>
+            <h3>2023 - DEC in Computer Science and Mathematics (Sciences Informatiques et Mathématiques), Collège de
+                Maisonneuve</h3>
+            <p>My thesis project saw the development of the game <strong>Défense planétaire</strong>.</p>
+            <h2>Work Experience</h2>
+            <h3>2020 - Parking Attendant, Place des Arts</h3>
+            <p>During my time working at Place des Arts, I took the initiative and <strong>designed and 3D-printed
+                    custom click-counter holders</strong> which simplified the team's work and remained in use after my
+                departure.
+            </p>
         </div>
     </main>
 </body>
