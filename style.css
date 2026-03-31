@@ -170,7 +170,7 @@ body {
     text-rendering: optimizeSpeed;
     line-height: var(--line-height-body);
     background-color: var(--color-background);
-    background-image: url('../resources/submerged_20.jpg');
+    background-image: url('resources/submerged_20.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
@@ -367,7 +367,11 @@ a:hover {
 }
 
 .bio-text-wrapper p {
-    margin: 0 auto var(--spacing-md) auto;
+    margin: 0 auto;
+}
+
+.bio-text-wrapper>.resume-item {
+    margin-bottom: var(--spacing-md);
 }
 
 /* Resume Container Layout */
