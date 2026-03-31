@@ -219,6 +219,37 @@ p {
     font-size: clamp(var(--font-size-lg), 3vw, var(--font-size-xl));
 }
 
+.cv-link {
+    justify-content: flex-start;
+    gap: var(--spacing-xs);
+    text-decoration: none;
+    transition: transform var(--transition-fast);
+}
+
+.cv-link:hover {
+    transform: translateX(4px);
+}
+
+.cv-link:hover .cv-text {
+    text-decoration-color: var(--color-primary);
+}
+
+.cv-icon {
+    width: 1.2em;
+    height: 1.2em;
+    transition: transform var(--transition-fast);
+}
+
+.cv-text {
+    margin-bottom: 0;
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-lg);
+    text-decoration: underline;
+    font-weight: bolder;
+    text-decoration-color: transparent;
+    transition: text-decoration-color var(--transition-fast);
+}
+
 /* Links */
 a {
     color: var(--color-primary);
@@ -308,9 +339,17 @@ a:hover {
     align-items: start;
 }
 
-.bio-image-wrapper {
+.bio-right-column {
     grid-column: 2;
     grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: center;
+    /* Center cv link below portrait */
+}
+
+.bio-image-wrapper {
     position: relative;
     border-radius: var(--radius-md);
     overflow: hidden;
@@ -857,14 +896,21 @@ footer {
     .bio-layout {
         display: flex;
         flex-direction: column;
+        align-items: center;
     }
 
-    .bio-image-wrapper {
-        margin: 0 auto var(--spacing-lg) auto;
+    .bio-right-column {
         width: 100%;
         max-width: 450px;
         min-width: 300px;
+        margin: 0 auto var(--spacing-lg) auto;
+        gap: var(--spacing-xs);
+    }
+
+    .bio-image-wrapper {
+        width: 100%;
         height: auto;
+        margin: 0;
     }
 }
 
