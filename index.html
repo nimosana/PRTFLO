@@ -35,11 +35,100 @@
     </nav>
 
     <main class="container">
-        <h1>Welcome to My Portfolio</h1>
-        <div class="surface">
-            <h2>About this project</h2>
-            <p>This is the landing page for my portfolio.</p>
-        </div>
+        <h1>Portfolio</h1>
+        
+        <!-- Film & Video -->
+        <section class="surface">
+            <h2>Film & Video</h2>
+            <div class="slideshow" data-slideshow-id="film">
+                <div class="slideshow-track">
+                    <div class="slide">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                    <div class="slide">
+                        <iframe src="https://www.youtube.com/embed/jNQXAC9IVRw" title="YouTube video 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <button class="slide-nav prev" aria-label="Previous frame">&#10094;</button>
+                <button class="slide-nav next" aria-label="Next frame">&#10095;</button>
+            </div>
+        </section>
+
+        <!-- Photography -->
+        <section class="surface">
+            <h2>Photography</h2>
+            <p>Select the works below to see more complex projects.</p>
+            <div class="slideshow" data-slideshow-id="photo">
+                <div class="slideshow-track">
+                    <div class="slide">
+                        <a href="#"><img src="resources/photography_project_1_1776021263989.png" alt="Photography Project 1"></a>
+                    </div>
+                    <div class="slide">
+                        <a href="#"><img src="resources/submerged_20.jpg" alt="Photography Project 2"></a>
+                    </div>
+                </div>
+                <button class="slide-nav prev" aria-label="Previous frame">&#10094;</button>
+                <button class="slide-nav next" aria-label="Next frame">&#10095;</button>
+            </div>
+            
+            <h3 style="margin-top: var(--spacing-xl);">Responsive Image Grid</h3>
+            <div class="grid grid-auto image-grid">
+                <a href="#"><img src="resources/photography_grid_1_1776021281333.png" alt="Photography Grid 1" class="grid-img"></a>
+                <a href="#"><img src="resources/photography_project_1_1776021263989.png" alt="Photography Grid 2" class="grid-img"></a>
+                <a href="#"><img src="resources/photography_grid_1_1776021281333.png" alt="Photography Grid 3" class="grid-img"></a>
+            </div>
+        </section>
+
+        <!-- 3D & Animation -->
+        <section class="surface">
+            <h2>3D & Animation</h2>
+            <div class="slideshow" data-slideshow-id="3d">
+                <div class="slideshow-track">
+                    <div class="slide">
+                        <a href="#"><img src="resources/3d_animation_1_1776021296612.png" alt="3D Animation 1"></a>
+                    </div>
+                    <div class="slide">
+                        <a href="#"><img src="resources/submerged_20.jpg" alt="3D Animation 2"></a>
+                    </div>
+                </div>
+                <button class="slide-nav prev" aria-label="Previous frame">&#10094;</button>
+                <button class="slide-nav next" aria-label="Next frame">&#10095;</button>
+            </div>
+        </section>
+
+        <!-- Interactive & Creative Coding -->
+        <section class="surface">
+            <h2>Interactive & Creative Coding</h2>
+            <div class="slideshow" data-slideshow-id="coding">
+                <div class="slideshow-track">
+                    <div class="slide">
+                        <a href="#"><img src="resources/creative_coding_1_1776021311202.png" alt="Creative Coding 1"></a>
+                    </div>
+                    <div class="slide">
+                        <a href="#"><img src="resources/submerged_20.jpg" alt="Creative Coding 2"></a>
+                    </div>
+                </div>
+                <button class="slide-nav prev" aria-label="Previous frame">&#10094;</button>
+                <button class="slide-nav next" aria-label="Next frame">&#10095;</button>
+            </div>
+        </section>
+
+        <!-- Physical Computing & Fabrication -->
+        <section class="surface">
+            <h2>Physical Computing & Fabrication</h2>
+            <div class="slideshow" data-slideshow-id="physical">
+                <div class="slideshow-track">
+                    <div class="slide">
+                        <a href="#"><img src="resources/physical_comp_1_1776021331836.png" alt="Physical Computing 1"></a>
+                    </div>
+                    <div class="slide">
+                        <a href="#"><img src="resources/submerged_20.jpg" alt="Physical Computing 2"></a>
+                    </div>
+                </div>
+                <button class="slide-nav prev" aria-label="Previous frame">&#10094;</button>
+                <button class="slide-nav next" aria-label="Next frame">&#10095;</button>
+            </div>
+        </section>
     </main>
 </body>
 

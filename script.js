@@ -9,4 +9,24 @@ document.addEventListener("DOMContentLoaded", () => {
             navBar.setAttribute("data-expanded", !isExpanded);
         });
     }
+
+    // Portfolio Slideshow Logic
+    const slideshows = document.querySelectorAll(".slideshow");
+    slideshows.forEach(slideshow => {
+        const track = slideshow.querySelector(".slideshow-track");
+        const prevBtn = slideshow.querySelector(".slide-nav.prev");
+        const nextBtn = slideshow.querySelector(".slide-nav.next");
+
+        if (track && prevBtn && nextBtn) {
+            prevBtn.addEventListener("click", () => {
+                const scrollAmount = track.clientWidth;
+                track.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+            });
+
+            nextBtn.addEventListener("click", () => {
+                const scrollAmount = track.clientWidth;
+                track.scrollBy({ left: scrollAmount, behavior: "smooth" });
+            });
+        }
+    });
 });
