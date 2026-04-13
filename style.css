@@ -341,6 +341,7 @@ a:hover {
     box-shadow: var(--shadow-md), 0 12px 32px rgba(0, 0, 0, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-top: 1px solid rgba(255, 255, 255, 0.25);
+    scroll-margin-top: calc(var(--spacing-xl) + 80px);
     /* Stronger borders and shadows for intense depth */
 }
 
@@ -375,6 +376,48 @@ a:hover {
 
 .flex-wrap {
     flex-wrap: wrap;
+}
+
+/* Portfolio Main Layout */
+.portfolio-layout {
+    display: grid;
+    grid-template-columns: clamp(200px, 20vw, 260px) 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+}
+
+.portfolio-sidebar {
+    position: sticky;
+    top: calc(var(--spacing-xl) + 60px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    z-index: 10;
+}
+
+.portfolio-sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.portfolio-sidebar-menu a {
+    text-decoration: none;
+    font-family: var(--font-family-heading);
+    color: var(--color-text);
+    padding: var(--spacing-xs) 0;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+    display: block;
+}
+
+.portfolio-sidebar-menu a:hover,
+.portfolio-sidebar-menu a:focus-visible {
+    color: var(--color-primary);
+    transform: translateX(4px);
+    outline: none;
 }
 
 /* Bio Specific Layout */
@@ -930,10 +973,12 @@ button.btn-image img {
     gap: var(--spacing-sm);
     margin-top: var(--spacing-md);
     overflow-x: auto;
+    padding-top: 4px;
     padding-bottom: var(--spacing-xs);
 }
 
 .thumbnail {
+    flex: 0 0 auto;
     width: var(--thumbnail-width);
     height: var(--thumbnail-height);
     object-fit: cover;
@@ -1120,6 +1165,18 @@ footer {
 
 /* Responsive & Adaptive Breakpoints */
 @media (max-width: 1024px) {
+    .portfolio-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .portfolio-sidebar {
+        position: relative;
+        top: 0;
+        margin-bottom: var(--spacing-sm);
+    }
+
     .bio-layout {
         display: flex;
         flex-direction: column;

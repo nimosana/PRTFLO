@@ -34,11 +34,22 @@
         </div>
     </nav>
 
-    <main class="container">
-        <!-- <h1>Portfolio</h1> -->
+    <main class="container portfolio-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="portfolio-sidebar surface">
+            <h3 style="margin-bottom: var(--spacing-sm);">Categories</h3>
+            <ul class="portfolio-sidebar-menu">
+                <li><a href="#film-video">Film & Video</a></li>
+                <li><a href="#photography">Photography</a></li>
+                <li><a href="#3d-animation">3D & Animation</a></li>
+                <li><a href="#creative-coding">Interactive & Creative Coding</a></li>
+                <li><a href="#physical-computing">Physical Computing & Fabrication</a></li>
+            </ul>
+        </aside>
 
-        <!-- Film & Video -->
-        <section class="surface">
+        <div class="portfolio-content flex-col">
+            <!-- Film & Video -->
+            <section id="film-video" class="surface">
             <h2>Film & Video</h2>
             <div class="slideshow-container">
                 <div class="slideshow" data-slideshow-id="film">
@@ -97,7 +108,7 @@
         </section>
 
         <!-- Photography -->
-        <section class="surface">
+        <section id="photography" class="surface">
             <h2>Photography</h2>
             <p>Click the works below to see more complex projects.</p>
             <div class="slideshow-container">
@@ -145,7 +156,7 @@
         </section>
 
         <!-- 3D & Animation -->
-        <section class="surface">
+        <section id="3d-animation" class="surface">
             <h2>3D & Animation</h2>
             <div class="slideshow-container">
                 <div class="slideshow" data-slideshow-id="3d">
@@ -181,7 +192,7 @@
         </section>
 
         <!-- Interactive & Creative Coding -->
-        <section class="surface">
+        <section id="creative-coding" class="surface">
             <h2>Interactive & Creative Coding</h2>
             <div class="slideshow-container">
                 <div class="slideshow" data-slideshow-id="coding">
@@ -214,7 +225,7 @@
         </section>
 
         <!-- Physical Computing & Fabrication -->
-        <section class="surface">
+        <section id="physical-computing" class="surface">
             <h2>Physical Computing & Fabrication</h2>
             <div class="slideshow-container">
                 <div class="slideshow" data-slideshow-id="physical">
@@ -248,6 +259,7 @@
                 </div>
             </div>
         </section>
+        </div> <!-- End of portfolio-content -->
 
         <!-- Dialog Modals for Projects -->
 
