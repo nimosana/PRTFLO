@@ -876,6 +876,69 @@ button.btn-image img {
     border-color: rgba(255, 255, 255, 0.3);
 }
 
+/* Slideshow Thumbnails */
+.slideshow-thumbnails {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+    overflow-x: auto;
+    padding-bottom: var(--spacing-xs);
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) transparent;
+}
+
+.slideshow-thumbnails::-webkit-scrollbar {
+    height: 6px;
+}
+.slideshow-thumbnails::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    border-radius: var(--radius-pill);
+}
+
+.thumbnail {
+    width: 6rem;
+    height: 4rem;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid transparent;
+    opacity: 0.5;
+    border-radius: var(--radius-sm);
+    transition: opacity var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.thumbnail:hover {
+    opacity: 0.8;
+    transform: translateY(-2px);
+}
+
+.thumbnail.active {
+    opacity: 1;
+    border-color: var(--color-primary);
+}
+
+/* Project Modal Dialog */
+dialog.project-modal {
+    max-width: 900px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    background-color: var(--color-bg-950);
+}
+
+dialog.project-modal::backdrop {
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(12px);
+}
+
+.close-modal-btn {
+    transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.close-modal-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
 /* ========================================================================= */
 /* Navigation Menu                                                           */
 /* ========================================================================= */
