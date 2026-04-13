@@ -108,6 +108,13 @@
     --spacing-xxl: 6rem;
     /* 96px */
 
+    /* Thumbnail Sizes */
+    --thumbnail-width: 12rem;
+    --thumbnail-height: 6.75rem;
+
+    /* Scrollbar Settings */
+    --scrollbar-thickness: 10px;
+
 
     /* Radii & Effects */
     --radius-sm: 4px;
@@ -118,6 +125,36 @@
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.12);
     --transition-fast: 0.15s ease-in-out;
     --transition-normal: 0.3s ease-in-out;
+}
+
+/* Global Scrollbar Theming */
+html::-webkit-scrollbar,
+::-webkit-scrollbar {
+    width: var(--scrollbar-thickness);
+    height: var(--scrollbar-thickness);
+}
+
+html::-webkit-scrollbar-track,
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: var(--radius-pill);
+}
+
+html::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb {
+    background-color: var(--color-primary);
+    border-radius: var(--radius-pill);
+}
+
+html::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary-hover);
+}
+
+/* Base scrollbar for Firefox globally */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-primary) var(--color-bg-950);
 }
 
 /* Resets & Base Configuration (Accessibility & Flexibility) */
@@ -179,6 +216,12 @@ body {
     overflow-x: hidden;
     min-width: 320px;
     -webkit-font-smoothing: antialiased;
+}
+
+/* Prevent Background Scrolling When Modal Open */
+html:has(dialog[open]),
+body:has(dialog[open]) {
+    overflow: hidden;
 }
 
 /* Typography */
@@ -777,8 +820,10 @@ button.btn-image img {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 .slideshow-track::-webkit-scrollbar {
@@ -790,7 +835,8 @@ button.btn-image img {
     width: 100%;
     scroll-snap-align: center;
     position: relative;
-    aspect-ratio: 16 / 9; /* Consistent ratio constraints */
+    aspect-ratio: 16 / 9;
+    /* Consistent ratio constraints */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -844,7 +890,8 @@ button.btn-image img {
     right: var(--spacing-sm);
 }
 
-.slide-nav:hover, .slide-nav:focus-visible {
+.slide-nav:hover,
+.slide-nav:focus-visible {
     background: var(--color-primary);
     color: var(--color-bg-950);
     outline: none;
@@ -870,7 +917,8 @@ button.btn-image img {
     outline: none;
 }
 
-.image-grid .grid-img:hover, .image-grid a:focus .grid-img {
+.image-grid .grid-img:hover,
+.image-grid a:focus .grid-img {
     transform: translateY(-4px) scale(1.02);
     box-shadow: var(--shadow-md), 0 8px 32px rgba(0, 238, 255, 0.4);
     border-color: rgba(255, 255, 255, 0.3);
@@ -880,24 +928,14 @@ button.btn-image img {
 .slideshow-thumbnails {
     display: flex;
     gap: var(--spacing-sm);
-    margin-top: var(--spacing-sm);
+    margin-top: var(--spacing-md);
     overflow-x: auto;
     padding-bottom: var(--spacing-xs);
-    scrollbar-width: thin;
-    scrollbar-color: var(--color-primary) transparent;
-}
-
-.slideshow-thumbnails::-webkit-scrollbar {
-    height: 6px;
-}
-.slideshow-thumbnails::-webkit-scrollbar-thumb {
-    background-color: var(--color-primary);
-    border-radius: var(--radius-pill);
 }
 
 .thumbnail {
-    width: 6rem;
-    height: 4rem;
+    width: var(--thumbnail-width);
+    height: var(--thumbnail-height);
     object-fit: cover;
     cursor: pointer;
     border: 2px solid transparent;
@@ -918,11 +956,12 @@ button.btn-image img {
 
 /* Project Modal Dialog */
 dialog.project-modal {
-    max-width: 900px;
-    width: 90%;
+    max-width: 1600px;
+    width: 100%;
     max-height: 90vh;
     overflow-y: auto;
     background-color: var(--color-bg-950);
+    padding: var(--spacing-xl) var(--spacing-md);
 }
 
 dialog.project-modal::backdrop {
