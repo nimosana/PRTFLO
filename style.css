@@ -844,7 +844,7 @@ button.btn-image img {
     right: var(--spacing-sm);
 }
 
-.slide-nav:hover, .slide-nav:focus {
+.slide-nav:hover, .slide-nav:focus-visible {
     background: var(--color-primary);
     color: var(--color-bg-950);
     outline: none;
