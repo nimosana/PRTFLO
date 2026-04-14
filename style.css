@@ -1010,7 +1010,7 @@ dialog.project-modal {
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: var(--shadow-md), 0 12px 32px rgba(0, 0, 0, 0.7);
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-md);
 }
 
 dialog.project-modal::backdrop {
@@ -1086,7 +1086,6 @@ nav.surface {
     display: none;
     background: transparent;
     border: none;
-    cursor: url('resources/cursor.png'), pointer;
     padding: var(--spacing-sm);
 }
 
@@ -1240,13 +1239,15 @@ footer {
         gap: 0;
         max-height: 0;
         overflow: hidden;
-        transition: max-height var(--transition-normal);
+        transition: max-height var(--transition-normal), opacity var(--transition-normal);
         padding: 0;
+        opacity: 0;
     }
 
     .navbar[data-expanded="true"] .nav-menu {
         max-height: 400px;
         padding: var(--spacing-md) 0;
+        opacity: 1;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
     }
 
@@ -1256,4 +1257,218 @@ footer {
         text-align: center;
         border-radius: 0;
     }
+}
+
+/* ========================================================================= */
+/* Modal Futuristic Animations                                              */
+/* ========================================================================= */
+
+@keyframes modalFadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.96) translateY(20px);
+        filter: blur(8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0px);
+    }
+}
+
+@keyframes modalFadeOut {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0px);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.96) translateY(20px);
+        filter: blur(8px);
+    }
+}
+
+@keyframes backdropFadeIn {
+    0% {
+        background: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+    }
+
+    100% {
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+}
+
+@keyframes backdropFadeOut {
+    0% {
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+    }
+
+    100% {
+        background: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+    }
+}
+
+dialog.project-modal[open] {
+    animation: modalFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+dialog.project-modal[open]::backdrop {
+    animation: backdropFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+dialog.project-modal.modal-closing {
+    animation: modalFadeOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+dialog.project-modal.modal-closing::backdrop {
+    animation: backdropFadeOut 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+dialog.project-modal.modal-switching-out {
+    animation: modalFadeOut 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ========================================================================= */
+/* Additional Modal Slide Animations                                        */
+/* ========================================================================= */
+
+@keyframes modalSlideOutLeft {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-50px);
+        filter: blur(4px);
+    }
+}
+
+@keyframes modalSlideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+        filter: blur(4px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+    }
+}
+
+@keyframes modalSlideOutRight {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(50px);
+        filter: blur(4px);
+    }
+}
+
+@keyframes modalSlideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+        filter: blur(4px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0);
+    }
+}
+
+.project-modal.modal-switching-out-left {
+    animation: modalSlideOutLeft 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+dialog.project-modal.modal-switching-in-right[open] {
+    animation: modalSlideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+.project-modal.modal-switching-out-right {
+    animation: modalSlideOutRight 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+dialog.project-modal.modal-switching-in-left[open] {
+    animation: modalSlideInLeft 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+/* ========================================================================= */
+/* Global Entrance Animations                                               */
+/* ========================================================================= */
+
+@keyframes slideDownFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+        filter: blur(8px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0px);
+    }
+}
+
+.navbar {
+    animation: slideDownFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.portfolio-sidebar {
+    animation: slideDownFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 0.1s;
+}
+
+.portfolio-content>section {
+    animation: slideDownFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.portfolio-content>section:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.portfolio-content>section:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.portfolio-content>section:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.portfolio-content>section:nth-child(n+4) {
+    animation-delay: 0.5s;
+}
+
+/* Background fade out perfectly behind Modals */
+body.modal-active>.navbar,
+body.modal-active main>.portfolio-sidebar {
+    opacity: 0 !important;
+    filter: blur(12px) !important;
+    pointer-events: none;
+}
+
+.navbar,
+.portfolio-sidebar {
+    transition: opacity 0.4s ease, filter 0.4s ease;
 }
