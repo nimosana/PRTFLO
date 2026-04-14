@@ -25,7 +25,7 @@ window.switchModal = function (currentId, targetId, direction) {
     setTimeout(() => {
         current.close();
         current.className = 'project-modal';
-        
+
         const target = document.getElementById(targetId);
         target.className = `project-modal ${direction === 'next' ? 'modal-switching-in-right' : 'modal-switching-in-left'}`;
         target.showModal();
@@ -116,8 +116,21 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="project-modal-body"><div class="slideshow-container"><div class="slideshow" data-slideshow-id="${item.modalId}-slides"><div class="slideshow-track">`;
 
                     item.slides.forEach(slide => {
-                        if (slide.type === "youtube") dialogHtml += `<div class="slide"><iframe loading="lazy" src="https://www.youtube.com/embed/${slide.videoId}?enablejsapi=1" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
-                        else dialogHtml += `<div class="slide"><img src="${slide.src}" alt="${item.title} Slide"></div>`;
+                        if (slide.type === "youtube") {
+                            dialogHtml += `<div class="slide"><iframe loading="lazy" src="https://www.youtube.com/embed/${slide.videoId}?enablejsapi=1" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
+                        } else if (slide.type === "comparison") {
+                            dialogHtml += `<div class="slide comparison-slide" onmousedown="window.handleComparisonDown(event)" onmousemove="window.handleComparisonMove(event)">
+                                <img class="img-before aspect-ratio-4-3" src="${slide.beforeSrc}" alt="Before">
+                                <div class="img-after-wrapper aspect-ratio-4-3">
+                                    <img class="img-after" src="${slide.afterSrc}" alt="After">
+                                </div>
+                                <div class="comparison-slider">
+                                    <div class="comparison-slider-icon">&#8596;</div>
+                                </div>
+                            </div>`;
+                        } else {
+                            dialogHtml += `<div class="slide"><img src="${slide.src}" alt="${item.title} Slide"></div>`;
+                        }
                     });
 
                     dialogHtml += `</div><button class="slide-nav prev" aria-label="Previous frame">&#10094;</button><button class="slide-nav next" aria-label="Next frame">&#10095;</button></div><div class="slideshow-thumbnails">`;
@@ -211,6 +224,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         dialog.addEventListener('click', (e) => {
+            if (window.compState && Date.now() < window.compState.preventClickUntil) return; // Prevent closing globally if just finished a drag
+            
             const dialogDimensions = dialog.getBoundingClientRect();
             if (
                 e.clientX < dialogDimensions.left ||
@@ -223,3 +238,121 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+window.compState = { isDown: false, startX: 0, startY: 0, dragged: false, activeSlide: null, preventClickUntil: 0 };
+
+window.addEventListener('mouseup', (event) => {
+    if (window.compState && window.compState.isDown && window.compState.activeSlide) {
+        window.handleComparisonUp({ currentTarget: window.compState.activeSlide, clientX: event.clientX, clientY: event.clientY });
+    }
+});
+
+window.handleComparisonDown = function(event) {
+    const slide = event.currentTarget;
+    window.compState.isDown = true;
+    window.compState.dragged = false;
+    window.compState.startX = event.clientX;
+    window.compState.startY = event.clientY;
+    window.compState.activeSlide = slide;
+    slide.style.transition = 'none'; 
+};
+
+window.handleComparisonMove = function(event) {
+    const slide = event.currentTarget;
+    
+    if (window.compState.isDown) {
+        window.compState.dragged = true; // Any movement while mouse is down counts as drag
+    }
+    
+    // Pan logic when zoomed
+    if (window.compState.isDown && slide.classList.contains('zoomed')) {
+        const dx = event.clientX - window.compState.startX;
+        const dy = event.clientY - window.compState.startY;
+        
+        let tx = parseFloat(slide.dataset.tx || 0) + (dx / 2.5);
+        let ty = parseFloat(slide.dataset.ty || 0) + (dy / 2.5);
+        
+        // Clamping constraints to prevent dragging outside of image edges
+        const rect = slide.getBoundingClientRect();
+        const unscaledW = rect.width / 2.5; 
+        const unscaledH = rect.height / 2.5;
+        const ox = parseFloat(slide.dataset.ox || 0.5);
+        const oy = parseFloat(slide.dataset.oy || 0.5);
+        
+        const minTx = -0.6 * (1 - ox) * unscaledW;
+        const maxTx = 0.6 * ox * unscaledW;
+        const minTy = -0.6 * (1 - oy) * unscaledH;
+        const maxTy = 0.6 * oy * unscaledH;
+        
+        tx = Math.max(minTx, Math.min(tx, maxTx));
+        ty = Math.max(minTy, Math.min(ty, maxTy));
+        
+        slide.style.transform = `scale(2.5) translate(${tx}px, ${ty}px)`;
+        slide.dataset.currTx = tx;
+        slide.dataset.currTy = ty;
+    }
+    
+    // Mask sliding logic (works perfectly even while scaled!)
+    const rect = slide.getBoundingClientRect();
+    let xPercentage = event.clientX - rect.left;
+    xPercentage = Math.max(0, Math.min(xPercentage, rect.width));
+    const percent = (xPercentage / rect.width) * 100;
+    
+    const wrapper = slide.querySelector('.img-after-wrapper');
+    const slider = slide.querySelector('.comparison-slider');
+    if (wrapper && slider) {
+        wrapper.style.clipPath = `polygon(0 0, ${percent}% 0, ${percent}% 100%, 0 100%)`;
+        slider.style.left = `${percent}%`;
+    }
+};
+
+window.handleComparisonUp = function(event) {
+    const slide = event.currentTarget;
+    slide.style.transition = 'transform 0.3s ease'; 
+    if (!window.compState.isDown) return;
+    
+    window.compState.isDown = false;
+    window.compState.activeSlide = null;
+    
+    const dx = event.clientX - window.compState.startX;
+    const dy = event.clientY - window.compState.startY;
+    const isDrag = window.compState.dragged && (Math.abs(dx) > 5 || Math.abs(dy) > 5);
+    
+    // Finalize pan
+    if (isDrag) {
+        window.compState.preventClickUntil = Date.now() + 100; // Block clicks globally for 100ms
+        if (slide.classList.contains('zoomed')) {
+            slide.dataset.tx = slide.dataset.currTx || slide.dataset.tx;
+            slide.dataset.ty = slide.dataset.currTy || slide.dataset.ty;
+        }
+        return;
+    }
+    
+    window.compState.preventClickUntil = Date.now() + 100;
+    
+    // It's a clean click
+    if (slide.classList.contains('zoomed')) {
+        slide.classList.remove('zoomed');
+        slide.style.transform = 'none';
+        slide.dataset.tx = 0;
+        slide.dataset.ty = 0;
+    } else {
+        slide.classList.add('zoomed');
+        slide.dataset.tx = 0;
+        slide.dataset.ty = 0;
+        
+        const rect = slide.getBoundingClientRect();
+        const clickX = ((event.clientX - rect.left) / rect.width);
+        const clickY = ((event.clientY - rect.top) / rect.height);
+        slide.dataset.ox = clickX;
+        slide.dataset.oy = clickY;
+        
+        slide.style.transformOrigin = `${clickX * 100}% ${clickY * 100}%`;
+        slide.style.transform = 'scale(2.5) translate(0px, 0px)';
+    }
+};
+
+window.handleComparisonLeave = function(event) {
+    if (window.compState.isDown && event.currentTarget.classList.contains('zoomed')) {
+        window.handleComparisonUp(event);
+    }
+};

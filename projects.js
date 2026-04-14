@@ -21,14 +21,14 @@ const portfolioData = {
         items: [
             {
                 modalId: "photo-modal-1",
-                title: "Photography Project 1",
-                mediums: "Tech A, Tech B",
+                title: "Photoshop Editing",
+                mediums: "Photoshop",
                 date: "2026",
-                coverThumb: "resources/photography_project_1_1776021263989.png",
-                gridImage: "resources/photography_grid_1_1776021281333.png",
+                coverThumb: "resources/PSEditing.jpg",
+                gridImage: "resources/PSEditing.jpg",
                 desc: "This is where I will place the detailed description for the project. Explain my conceptual approach, the creative process, technical challenges, and final outcome. This modal can easily be duplicated and modified for each work, meow.",
                 slides: [
-                    { type: "image", src: "resources/photography_project_1_1776021263989.png", thumb: "resources/photography_project_1_1776021263989.png" },
+                    { type: "comparison", beforeSrc: "resources/highres_scan.jpg", afterSrc: "resources/highres_scan_after.jpg", thumb: "resources/highres_scan_after.jpg" },
                     { type: "image", src: "resources/creative_coding_1_1776021311202.png", thumb: "resources/creative_coding_1_1776021311202.png" },
                     { type: "image", src: "resources/3d_animation_1_1776021296612.png", thumb: "resources/3d_animation_1_1776021296612.png" }
                 ]
