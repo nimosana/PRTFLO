@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
             section.id = category.id;
             section.className = "surface";
 
-            let html = `<h2>${category.title}</h2>`;
+            let html = `<h1>${category.title}</h1>`;
             if (category.description) html += `<p>${category.description}</p>`;
 
             html += `<div class="slideshow-container"><div class="slideshow" data-slideshow-id="${category.id}"><div class="slideshow-track">`;
@@ -69,7 +69,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (category.type === "video_gallery") {
                     html += `<div class="slide"><iframe loading="lazy" src="https://www.youtube.com/embed/${item.videoId}?enablejsapi=1" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
                 } else {
-                    html += `<div class="slide"><a href="#" onclick="window.openModal('${item.modalId}'); return false;"><img src="${item.coverThumb}" alt="${item.title}"></a></div>`;
+                    html += `<div class="slide"><a href="#" onclick="window.openModal('${item.modalId}'); return false;" class="gallery-slide-link" style="position: relative; display: block; height: 100%; border-radius: var(--radius-md); overflow: hidden;">
+                        <img src="${item.coverThumb}" alt="${item.title}" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+                        <div class="portrait-overlay"></div>
+                        <div class="portrait-content" style="position: absolute; top: var(--spacing-sm); left: var(--spacing-sm); bottom: auto; text-align: left; padding: var(--spacing-md); justify-content: flex-start; z-index: 10;">
+                            <h2 class="portrait-title" style="margin-bottom: 0;">${item.title}</h2>
+                        </div>
+                    </a></div>`;
                 }
             });
 
@@ -79,13 +85,13 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             html += `</div></div>`;
 
-            if (category.showGrid) {
-                html += `<h3 style="margin-top: var(--spacing-xl);">Responsive Image Grid</h3><div class="grid grid-auto image-grid">`;
-                category.items.forEach(item => {
-                    html += `<a href="#" onclick="window.openModal('${item.modalId}'); return false;"><img src="${item.gridImage}" alt="${item.title} Grid" class="grid-img"></a>`;
-                });
-                html += `</div>`;
-            }
+            // if (category.showGrid) {
+            //     html += `<h3 style="margin-top: var(--spacing-xl);">Responsive Image Grid</h3><div class="grid grid-auto image-grid">`;
+            //     category.items.forEach(item => {
+            //         html += `<a href="#" onclick="window.openModal('${item.modalId}'); return false;"><img src="${item.gridImage}" alt="${item.title} Grid" class="grid-img"></a>`;
+            //     });
+            //     html += `</div>`;
+            // }
 
             section.innerHTML = html;
             portfolioContainer.appendChild(section);
@@ -111,7 +117,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <button class="btn modal-nav-next" onclick="${nextOnClick}" ${!nextId ? 'disabled' : ''} aria-label="Next Project" style="padding: 4px 12px; font-size: 1rem;">&#10095;</button>
                             </div>
                         </div>
-                        <div class="project-meta flex" style="gap: var(--spacing-md); margin-bottom: var(--spacing-lg); color: var(--color-primary); font-family: var(--font-family-heading);"><span><strong>Mediums:</strong> ${item.mediums}</span><span><strong>Date:</strong> ${item.date}</span></div>
+                        <div class="project-meta flex" style="gap: var(--spacing-md); margin-bottom: var(--spacing-lg); color: var(--color-text-muted); font-family: var(--font-family-heading);"><span><strong style="color: var(--color-primary); font-weight: normal;">Mediums:</strong> ${item.mediums}</span><span><strong style="color: var(--color-primary); font-weight: normal;">Date:</strong> ${item.date}</span></div>
                     </div>
                     <div class="project-modal-body"><div class="slideshow-container"><div class="slideshow" data-slideshow-id="${item.modalId}-slides"><div class="slideshow-track">`;
 
@@ -119,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (slide.type === "youtube") {
                             dialogHtml += `<div class="slide"><iframe loading="lazy" src="https://www.youtube.com/embed/${slide.videoId}?enablejsapi=1" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
                         } else if (slide.type === "comparison") {
-                            dialogHtml += `<div class="slide comparison-slide" onmousedown="window.handleComparisonDown(event)" onmousemove="window.handleComparisonMove(event)">
+                            dialogHtml += `<div class="slide comparison-slide" onpointerdown="window.handleComparisonDown(event)" onpointermove="window.handleComparisonMove(event)">
                                 <img class="img-before aspect-ratio-4-3" src="${slide.beforeSrc}" alt="Before">
                                 <div class="img-after-wrapper aspect-ratio-4-3">
                                     <img class="img-after" src="${slide.afterSrc}" alt="After">
@@ -225,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         dialog.addEventListener('click', (e) => {
             if (window.compState && Date.now() < window.compState.preventClickUntil) return; // Prevent closing globally if just finished a drag
-            
+
             const dialogDimensions = dialog.getBoundingClientRect();
             if (
                 e.clientX < dialogDimensions.left ||
@@ -238,121 +244,175 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
-window.compState = { isDown: false, startX: 0, startY: 0, dragged: false, activeSlide: null, preventClickUntil: 0 };
+window.compState = { isDown: false, startX: 0, startY: 0, dragged: false, activeSlide: null, preventClickUntil: 0, isSliderDragging: false };
 
-window.addEventListener('mouseup', (event) => {
+window.addEventListener('pointerup', (event) => {
     if (window.compState && window.compState.isDown && window.compState.activeSlide) {
-        window.handleComparisonUp({ currentTarget: window.compState.activeSlide, clientX: event.clientX, clientY: event.clientY });
+        window.handleComparisonUp({ currentTarget: window.compState.activeSlide, pointerType: event.pointerType, clientX: event.clientX, clientY: event.clientY });
     }
 });
 
-window.handleComparisonDown = function(event) {
+window.handleComparisonDown = function (event) {
     const slide = event.currentTarget;
+
+    if (event.pointerType === 'touch') {
+        if (event.target.closest('.comparison-slider-icon') || event.target.closest('.comparison-slider')) {
+            window.compState.isSliderDragging = true;
+            window.compState.isDown = true;
+            window.compState.activeSlide = slide;
+            slide.style.transition = 'none';
+            return;
+        }
+
+        // Double tap detection
+        const currentTime = Date.now();
+        const tapLength = currentTime - (parseInt(slide.dataset.lastTap) || 0);
+        slide.dataset.lastTap = currentTime;
+
+        if (tapLength > 0 && tapLength < 300) {
+            window.toggleComparisonZoom(slide, event.clientX, event.clientY);
+            window.compState.preventClickUntil = Date.now() + 300;
+            return;
+        }
+    } else {
+        if (event.target.closest('.comparison-slider-icon') || event.target.closest('.comparison-slider')) {
+            window.compState.isSliderDragging = true;
+        }
+    }
+
     window.compState.isDown = true;
     window.compState.dragged = false;
     window.compState.startX = event.clientX;
     window.compState.startY = event.clientY;
     window.compState.activeSlide = slide;
-    slide.style.transition = 'none'; 
+    slide.style.transition = 'none';
 };
 
-window.handleComparisonMove = function(event) {
+window.handleComparisonMove = function (event) {
     const slide = event.currentTarget;
-    
-    if (window.compState.isDown) {
-        window.compState.dragged = true; // Any movement while mouse is down counts as drag
+
+    // Mask logic
+    if (event.pointerType === 'mouse' || window.compState.isSliderDragging) {
+        const rect = slide.getBoundingClientRect();
+        let xPercentage = event.clientX - rect.left;
+        xPercentage = Math.max(0, Math.min(xPercentage, rect.width));
+        const percent = (xPercentage / rect.width) * 100;
+
+        const wrapper = slide.querySelector('.img-after-wrapper');
+        const slider = slide.querySelector('.comparison-slider');
+        if (wrapper && slider) {
+            wrapper.style.clipPath = `polygon(0 0, ${percent}% 0, ${percent}% 100%, 0 100%)`;
+            slider.style.left = `${percent}%`;
+        }
+
+        if (event.pointerType === 'touch' && window.compState.isSliderDragging) {
+            return;
+        }
     }
-    
-    // Pan logic when zoomed
-    if (window.compState.isDown && slide.classList.contains('zoomed')) {
+
+    // Ensure we don't trigger panning if dragging the slider
+    if (window.compState.isDown && !window.compState.isSliderDragging) {
+        window.compState.dragged = true;
+    }
+
+    // Pan logic
+    if (window.compState.isDown && !window.compState.isSliderDragging && slide.classList.contains('zoomed')) {
         const dx = event.clientX - window.compState.startX;
         const dy = event.clientY - window.compState.startY;
-        
+
         let tx = parseFloat(slide.dataset.tx || 0) + (dx / 2.5);
         let ty = parseFloat(slide.dataset.ty || 0) + (dy / 2.5);
-        
-        // Clamping constraints to prevent dragging outside of image edges
+
         const rect = slide.getBoundingClientRect();
-        const unscaledW = rect.width / 2.5; 
+        const unscaledW = rect.width / 2.5;
         const unscaledH = rect.height / 2.5;
         const ox = parseFloat(slide.dataset.ox || 0.5);
         const oy = parseFloat(slide.dataset.oy || 0.5);
-        
+
         const minTx = -0.6 * (1 - ox) * unscaledW;
         const maxTx = 0.6 * ox * unscaledW;
         const minTy = -0.6 * (1 - oy) * unscaledH;
         const maxTy = 0.6 * oy * unscaledH;
-        
+
         tx = Math.max(minTx, Math.min(tx, maxTx));
         ty = Math.max(minTy, Math.min(ty, maxTy));
-        
+
         slide.style.transform = `scale(2.5) translate(${tx}px, ${ty}px)`;
         slide.dataset.currTx = tx;
         slide.dataset.currTy = ty;
-    }
-    
-    // Mask sliding logic (works perfectly even while scaled!)
-    const rect = slide.getBoundingClientRect();
-    let xPercentage = event.clientX - rect.left;
-    xPercentage = Math.max(0, Math.min(xPercentage, rect.width));
-    const percent = (xPercentage / rect.width) * 100;
-    
-    const wrapper = slide.querySelector('.img-after-wrapper');
-    const slider = slide.querySelector('.comparison-slider');
-    if (wrapper && slider) {
-        wrapper.style.clipPath = `polygon(0 0, ${percent}% 0, ${percent}% 100%, 0 100%)`;
-        slider.style.left = `${percent}%`;
+
+        // Dynamically anchor the slider icon to the visible center of the original box
+        const sliderIcon = slide.querySelector('.comparison-slider-icon');
+        if (sliderIcon) {
+            const yPercent = (0.2 + (0.6 * oy) - (ty / unscaledH)) * 100;
+            sliderIcon.style.top = `${yPercent}%`;
+        }
     }
 };
 
-window.handleComparisonUp = function(event) {
-    const slide = event.currentTarget;
-    slide.style.transition = 'transform 0.3s ease'; 
+window.handleComparisonUp = function (event) {
+    const slide = event.currentTarget || window.compState.activeSlide;
+    if (!slide) return;
+
+    slide.style.transition = 'transform 0.3s ease';
     if (!window.compState.isDown) return;
-    
+
     window.compState.isDown = false;
     window.compState.activeSlide = null;
-    
+
+    if (window.compState.isSliderDragging) {
+        window.compState.isSliderDragging = false;
+        return;
+    }
+
     const dx = event.clientX - window.compState.startX;
     const dy = event.clientY - window.compState.startY;
     const isDrag = window.compState.dragged && (Math.abs(dx) > 5 || Math.abs(dy) > 5);
-    
-    // Finalize pan
+
     if (isDrag) {
-        window.compState.preventClickUntil = Date.now() + 100; // Block clicks globally for 100ms
+        window.compState.preventClickUntil = Date.now() + 100;
         if (slide.classList.contains('zoomed')) {
             slide.dataset.tx = slide.dataset.currTx || slide.dataset.tx;
             slide.dataset.ty = slide.dataset.currTy || slide.dataset.ty;
         }
         return;
     }
-    
+
     window.compState.preventClickUntil = Date.now() + 100;
-    
-    // It's a clean click
+
+    // Zoom strictly on single click for MOUSE.
+    if (event.pointerType === 'mouse' && !isDrag) {
+        window.toggleComparisonZoom(slide, event.clientX, event.clientY);
+    }
+};
+
+window.toggleComparisonZoom = function (slide, clientX, clientY) {
     if (slide.classList.contains('zoomed')) {
         slide.classList.remove('zoomed');
         slide.style.transform = 'none';
         slide.dataset.tx = 0;
         slide.dataset.ty = 0;
+
+        const sliderIcon = slide.querySelector('.comparison-slider-icon');
+        if (sliderIcon) sliderIcon.style.top = '50%';
     } else {
         slide.classList.add('zoomed');
         slide.dataset.tx = 0;
         slide.dataset.ty = 0;
-        
+
         const rect = slide.getBoundingClientRect();
-        const clickX = ((event.clientX - rect.left) / rect.width);
-        const clickY = ((event.clientY - rect.top) / rect.height);
+        const clickX = ((clientX - rect.left) / rect.width);
+        const clickY = ((clientY - rect.top) / rect.height);
         slide.dataset.ox = clickX;
         slide.dataset.oy = clickY;
-        
+
         slide.style.transformOrigin = `${clickX * 100}% ${clickY * 100}%`;
         slide.style.transform = 'scale(2.5) translate(0px, 0px)';
-    }
-};
 
-window.handleComparisonLeave = function(event) {
-    if (window.compState.isDown && event.currentTarget.classList.contains('zoomed')) {
-        window.handleComparisonUp(event);
+        const sliderIcon = slide.querySelector('.comparison-slider-icon');
+        if (sliderIcon) {
+            const yPercent = (0.2 + (0.6 * clickY)) * 100; // ty is 0 natively
+            sliderIcon.style.top = `${yPercent}%`;
+        }
     }
 };

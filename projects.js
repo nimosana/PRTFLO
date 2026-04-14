@@ -16,7 +16,7 @@ const portfolioData = {
         id: "photography",
         title: "Photography",
         type: "project_gallery",
-        description: "Click the works below to see more complex projects.",
+        // description: "Click the works below to see more complex projects.",
         showGrid: true,
         items: [
             {
