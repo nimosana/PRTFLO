@@ -3,6 +3,7 @@ window.openModal = function (id) {
     const target = document.getElementById(id);
     target.className = 'project-modal'; // pure reset
     target.showModal();
+    window.loadActiveIframes(target);
 };
 window.closeModal = function (id) {
     const dialog = document.getElementById(id);
@@ -29,7 +30,27 @@ window.switchModal = function (currentId, targetId, direction) {
         const target = document.getElementById(targetId);
         target.className = `project-modal ${direction === 'next' ? 'modal-switching-in-right' : 'modal-switching-in-left'}`;
         target.showModal();
+        window.loadActiveIframes(target);
     }, 250);
+};
+
+window.loadActiveIframes = function(dialog) {
+    if (!dialog) return;
+    const track = dialog.querySelector('.slideshow-track');
+    if (!track) return;
+    requestAnimationFrame(() => {
+        const slides = track.querySelectorAll('.slide');
+        const slideWidth = track.clientWidth || 1;
+        const index = Math.max(0, Math.round(track.scrollLeft / slideWidth));
+        if (slides[index]) {
+            slides[index].querySelectorAll('iframe.generic-webpage').forEach(iframe => {
+                const src = iframe.getAttribute('src');
+                if (iframe.dataset.src && (!src || src === 'about:blank' || src === window.location.href)) {
+                    iframe.src = iframe.dataset.src;
+                }
+            });
+        }
+    });
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -118,13 +139,15 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <button class="btn modal-nav-next" onclick="${nextOnClick}" ${!nextId ? 'disabled' : ''} aria-label="Next Project" style="padding: 4px 12px; font-size: 1rem;">&#10095;</button>
                             </div>
                         </div>
-                        <div class="project-meta flex" style="gap: var(--spacing-md); margin-bottom: var(--spacing-lg); color: var(--color-text-muted); font-family: var(--font-family-heading);"><span><strong style="color: var(--color-primary); font-weight: normal;">Mediums:</strong> ${item.mediums}</span><span><strong style="color: var(--color-primary); font-weight: normal;">Date:</strong> ${item.date}</span></div>
+                        <div class="project-meta flex" style="gap: var(--spacing-md); margin-bottom: var(--spacing-lg); color: var(--color-text-muted); font-family: var(--font-family-heading);"><span><strong style="color: var(--color-primary); font-weight: normal;">Mediums:</strong> ${item.mediums}</span><span><strong style="color: var(--color-primary); font-weight: normal;">Date:</strong> ${item.date}</span>${item.linkUrl ? `<span><strong style="color: var(--color-primary); font-weight: normal;">Link:</strong> <a href="${item.linkUrl}" target="_blank" style="color: var(--color-primary); text-decoration: underline;">${item.linkText || item.linkUrl}</a></span>` : ''}</div>
                     </div>
                     <div class="project-modal-body"><div class="slideshow-container"><div class="slideshow" data-slideshow-id="${item.modalId}-slides" style="--aspect-ratio: ${item.aspectRatio || '16 / 9'};"><div class="slideshow-track">`;
 
                     item.slides.forEach(slide => {
                         if (slide.type === "youtube") {
                             dialogHtml += `<div class="slide"><iframe loading="lazy" src="https://www.youtube.com/embed/${slide.videoId}?enablejsapi=1" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
+                        } else if (slide.type === "webpage") {
+                            dialogHtml += `<div class="slide"><iframe class="generic-webpage" loading="lazy" data-src="${slide.url}" src="about:blank" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
                         } else if (slide.type === "comparison") {
                             dialogHtml += `<div class="slide comparison-slide" onpointerdown="window.handleComparisonDown(event)" onpointermove="window.handleComparisonMove(event)">
                                 <img class="img-before aspect-ratio-4-3" src="${slide.beforeSrc}" alt="Before">
@@ -163,7 +186,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const pauseAllIframes = (parent) => {
             parent.querySelectorAll('iframe').forEach(iframe => {
-                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                const targetSrc = iframe.getAttribute('src') || '';
+                if (targetSrc.includes('youtube.com')) {
+                    iframe.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                } else if (iframe.classList.contains('generic-webpage') && iframe.dataset.src) {
+                    if (targetSrc !== 'about:blank' && targetSrc !== '') {
+                        iframe.src = 'about:blank';
+                    }
+                }
             });
         };
 
@@ -201,6 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (currentIndex !== index) {
                         pauseAllIframes(track);
                         currentIndex = index;
+                        window.loadActiveIframes(container.closest('dialog'));
                     }
                     updateActiveThumbnail(index);
                 }
@@ -226,7 +257,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('dialog.project-modal').forEach(dialog => {
         dialog.addEventListener('close', () => {
             dialog.querySelectorAll('iframe').forEach(iframe => {
-                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                const targetSrc = iframe.getAttribute('src') || '';
+                if (targetSrc.includes('youtube.com')) {
+                    iframe.contentWindow?.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                } else if (iframe.classList.contains('generic-webpage') && iframe.dataset.src) {
+                    if (targetSrc !== 'about:blank' && targetSrc !== '') {
+                        iframe.src = 'about:blank';
+                    }
+                }
             });
         });
 
@@ -244,6 +282,43 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
+
+    // Iframe focus lock to prevent native browser scrolling from stealing arrow keys/swipes
+    window.addEventListener('blur', () => {
+        setTimeout(() => {
+            if (document.activeElement && document.activeElement.tagName === 'IFRAME') {
+                const track = document.activeElement.closest('.slideshow-track');
+                const modal = document.activeElement.closest('.project-modal');
+                if (track) {
+                    track.style.overflowX = 'hidden';
+                    window._lockedTrack = track;
+                }
+                if (modal) {
+                    modal.style.overflowY = 'hidden';
+                    window._lockedModal = modal;
+                }
+            }
+        }, 50);
+    });
+
+    const unlockTrack = () => {
+        if (window._lockedTrack) {
+            window._lockedTrack.style.overflowX = '';
+            window._lockedTrack = null;
+        }
+        if (window._lockedModal) {
+            window._lockedModal.style.overflowY = '';
+            window._lockedModal = null;
+        }
+        document.querySelectorAll('.slideshow-track').forEach(t => t.style.overflowX = '');
+        document.querySelectorAll('.project-modal').forEach(m => m.style.overflowY = '');
+    };
+
+    window.addEventListener('focus', unlockTrack);
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('iframe')) unlockTrack();
+    });
+
 });
 window.compState = { isDown: false, startX: 0, startY: 0, dragged: false, activeSlide: null, preventClickUntil: 0, isSliderDragging: false };
 

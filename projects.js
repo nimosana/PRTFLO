@@ -176,13 +176,15 @@ const portfolioData = {
                 title: "Rug City Racer",
                 mediums: "Video-Driven Web Game",
                 date: "2025",
+                linkText: "Play Rug City Racer",
+                linkUrl: "https://nimosana.github.io/415/",
                 coverThumb: "resources/SplashScreen.webp",
                 desc: "This is where I will place the detailed description for the project. Explain my conceptual approach, the creative process, technical challenges, and final outcome. This modal can easily be duplicated and modified for each work, meow.",
                 slides: [
                     // { type: "youtube", videoId: "Y-WiPhEqYOs", thumb: "resources/Reflections_1.jpg" },
-                    { type: "image", src: "resources/SplashScreen.webp", thumb: "resources/SplashScreen.webp" },
-                    { type: "image", src: "resources/rcr_1.webp", thumb: "resources/rcr_1.webp" },
-                    { type: "image", src: "resources/rcr_2.webp", thumb: "resources/rcr_2.webp" }
+                    { type: "webpage", url: "https://nimosana.github.io/415/", thumb: "resources/SplashScreen.webp" },
+                    // { type: "image", src: "resources/rcr_1.webp", thumb: "resources/rcr_1.webp" },
+                    // { type: "image", src: "resources/rcr_2.webp", thumb: "resources/rcr_2.webp" }
                 ]
             }
         ]
