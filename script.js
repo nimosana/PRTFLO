@@ -206,8 +206,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const updateActiveThumbnail = (index) => {
             thumbnails.forEach(t => t.classList.remove("active"));
             if (thumbnails[index]) {
-                thumbnails[index].classList.add("active");
-                thumbnails[index].scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+                const thumb = thumbnails[index];
+                thumb.classList.add("active");
+                
+                const thumbContainer = thumb.parentElement;
+                // Mathematically isolate the horizontal offset of the thumbnail ignoring all parent vertical bounds
+                const targetLeft = thumb.offsetLeft - thumbContainer.offsetLeft - (thumbContainer.clientWidth / 2) + (thumb.clientWidth / 2);
+                thumbContainer.scrollTo({ left: targetLeft, behavior: "smooth" });
             }
         };
 
@@ -232,8 +237,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         pauseAllIframes(track);
                         currentIndex = index;
                         window.loadActiveIframes(container.closest('dialog'));
+                        updateActiveThumbnail(index);
                     }
-                    updateActiveThumbnail(index);
                 }
             });
         }
@@ -283,41 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Iframe focus lock to prevent native browser scrolling from stealing arrow keys/swipes
-    window.addEventListener('blur', () => {
-        setTimeout(() => {
-            if (document.activeElement && document.activeElement.tagName === 'IFRAME') {
-                const track = document.activeElement.closest('.slideshow-track');
-                const modal = document.activeElement.closest('.project-modal');
-                if (track) {
-                    track.style.overflowX = 'hidden';
-                    window._lockedTrack = track;
-                }
-                if (modal) {
-                    modal.style.overflowY = 'hidden';
-                    window._lockedModal = modal;
-                }
-            }
-        }, 50);
-    });
 
-    const unlockTrack = () => {
-        if (window._lockedTrack) {
-            window._lockedTrack.style.overflowX = '';
-            window._lockedTrack = null;
-        }
-        if (window._lockedModal) {
-            window._lockedModal.style.overflowY = '';
-            window._lockedModal = null;
-        }
-        document.querySelectorAll('.slideshow-track').forEach(t => t.style.overflowX = '');
-        document.querySelectorAll('.project-modal').forEach(m => m.style.overflowY = '');
-    };
-
-    window.addEventListener('focus', unlockTrack);
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('iframe')) unlockTrack();
-    });
 
 });
 window.compState = { isDown: false, startX: 0, startY: 0, dragged: false, activeSlide: null, preventClickUntil: 0, isSliderDragging: false };
