@@ -34,7 +34,7 @@ window.switchModal = function (currentId, targetId, direction) {
     }, 250);
 };
 
-window.loadActiveIframes = function(dialog) {
+window.loadActiveIframes = function (dialog) {
     if (!dialog) return;
     const track = dialog.querySelector('.slideshow-track');
     if (!track) return;
@@ -96,6 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="portrait-content" style="position: absolute; top: var(--spacing-sm); left: var(--spacing-sm); bottom: auto; text-align: left; padding: var(--spacing-md); justify-content: flex-start; z-index: 10;">
                             <h2 class="portrait-title" style="margin-bottom: 0;">${item.title}</h2>
                             <h3 class="portrait-mediums" style="margin: 0; margin-top: var(--spacing-xs); font-family: var(--font-family-heading); font-size: 0.9rem;">${item.mediums}</h3>
+                            <h3 class="gallery-hover-expand" style="margin: 0; margin-top: var(--spacing-md); font-family: var(--font-family-heading); font-size: 1rem; color: var(--color-primary);">Click to expand</h3>
                         </div>
                     </a></div>`;
                 }
@@ -135,8 +136,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="flex" style="align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-xs); flex-wrap: wrap;">
                             <h2 style="margin: 0;">${item.title}</h2>
                             <div class="modal-nav-arrows flex" style="gap: var(--spacing-sm);">
-                                <button class="btn modal-nav-prev" onclick="${prevOnClick}" ${!prevId ? 'disabled' : ''} aria-label="Previous Project" style="padding: 4px 12px; font-size: 1rem;">&#10094;</button>
-                                <button class="btn modal-nav-next" onclick="${nextOnClick}" ${!nextId ? 'disabled' : ''} aria-label="Next Project" style="padding: 4px 12px; font-size: 1rem;">&#10095;</button>
+                                <button class="btn modal-nav-prev" onclick="${prevOnClick}" ${!prevId ? 'style="display: none;"' : 'style="padding: 4px 12px; font-size: 1rem;"'} aria-label="Previous Project">&#10094;</button>
+                                <button class="btn modal-nav-next" onclick="${nextOnClick}" ${!nextId ? 'style="display: none;"' : 'style="padding: 4px 12px; font-size: 1rem;"'} aria-label="Next Project">&#10095;</button>
                             </div>
                         </div>
                         <div class="project-meta flex" style="gap: var(--spacing-md); margin-bottom: var(--spacing-lg); color: var(--color-text-muted); font-family: var(--font-family-heading);"><span><strong style="color: var(--color-primary); font-weight: normal;">Mediums:</strong> ${item.mediums}</span><span><strong style="color: var(--color-primary); font-weight: normal;">Date:</strong> ${item.date}</span>${item.linkUrl ? `<span><strong style="color: var(--color-primary); font-weight: normal;">Link:</strong> <a href="${item.linkUrl}" target="_blank" style="color: var(--color-primary); text-decoration: underline;">${item.linkText || item.linkUrl}</a></span>` : ''}</div>
@@ -208,13 +209,20 @@ document.addEventListener("DOMContentLoaded", () => {
             if (thumbnails[index]) {
                 const thumb = thumbnails[index];
                 thumb.classList.add("active");
-                
+
                 const thumbContainer = thumb.parentElement;
                 // Mathematically isolate the horizontal offset of the thumbnail ignoring all parent vertical bounds
                 const targetLeft = thumb.offsetLeft - thumbContainer.offsetLeft - (thumbContainer.clientWidth / 2) + (thumb.clientWidth / 2);
                 thumbContainer.scrollTo({ left: targetLeft, behavior: "smooth" });
             }
         };
+
+        const updateSlideNav = (index) => {
+            const totalSlides = thumbnails.length;
+            if (prevBtn) prevBtn.style.visibility = index === 0 ? 'hidden' : 'visible';
+            if (nextBtn) nextBtn.style.visibility = index === totalSlides - 1 ? 'hidden' : 'visible';
+        };
+        updateSlideNav(currentIndex);
 
         if (track && prevBtn && nextBtn) {
             prevBtn.addEventListener("click", () => {
@@ -238,6 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         currentIndex = index;
                         window.loadActiveIframes(container.closest('dialog'));
                         updateActiveThumbnail(index);
+                        updateSlideNav(index);
                     }
                 }
             });
