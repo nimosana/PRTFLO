@@ -91,8 +91,6 @@ const portfolioData = {
                 desc: "This is where I will place the detailed description for the project. Explain my conceptual approach, the creative process, technical challenges, and final outcome. This modal can easily be duplicated and modified for each work, meow.",
                 slides: [
                     { type: "youtube", videoId: "Ngts96kr_iY", thumb: "resources/Incarnation_1.jpg" },
-                    // { type: "image", src: "resources/creative_coding_1_1776021311202.png", thumb: "resources/creative_coding_1_1776021311202.png" },
-                    // { type: "image", src: "resources/3d_animation_1_1776021296612.png", thumb: "resources/3d_animation_1_1776021296612.png" }
                 ]
             },
             {
