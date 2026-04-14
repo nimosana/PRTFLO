@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="portrait-overlay"></div>
                         <div class="portrait-content" style="position: absolute; top: var(--spacing-sm); left: var(--spacing-sm); bottom: auto; text-align: left; padding: var(--spacing-md); justify-content: flex-start; z-index: 10;">
                             <h2 class="portrait-title" style="margin-bottom: 0;">${item.title}</h2>
+                            <h3 class="portrait-mediums" style="margin: 0; margin-top: var(--spacing-xs); font-family: var(--font-family-heading); font-size: 0.9rem;">${item.mediums}</h3>
                         </div>
                     </a></div>`;
                 }
@@ -119,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                         <div class="project-meta flex" style="gap: var(--spacing-md); margin-bottom: var(--spacing-lg); color: var(--color-text-muted); font-family: var(--font-family-heading);"><span><strong style="color: var(--color-primary); font-weight: normal;">Mediums:</strong> ${item.mediums}</span><span><strong style="color: var(--color-primary); font-weight: normal;">Date:</strong> ${item.date}</span></div>
                     </div>
-                    <div class="project-modal-body"><div class="slideshow-container"><div class="slideshow" data-slideshow-id="${item.modalId}-slides"><div class="slideshow-track">`;
+                    <div class="project-modal-body"><div class="slideshow-container"><div class="slideshow" data-slideshow-id="${item.modalId}-slides" style="--aspect-ratio: ${item.aspectRatio || '16 / 9'};"><div class="slideshow-track">`;
 
                     item.slides.forEach(slide => {
                         if (slide.type === "youtube") {
@@ -135,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 </div>
                             </div>`;
                         } else {
-                            dialogHtml += `<div class="slide"><img src="${slide.src}" alt="${item.title} Slide"></div>`;
+                            dialogHtml += `<div class="slide zoomable-slide" onpointerdown="window.handleComparisonDown(event)" onpointermove="window.handleComparisonMove(event)"><img src="${slide.src}" alt="${item.title} Slide" oncontextmenu="return false;" style="pointer-events: none;"></div>`;
                         }
                     });
 
