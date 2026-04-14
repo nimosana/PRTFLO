@@ -22,7 +22,7 @@ const portfolioData = {
             {
                 modalId: "photo-modal-1",
                 title: "Image Editing & Compositing",
-                mediums: "Photoshop",
+                mediums: "Photography, Photoshop, Lightroom",
                 date: "2026",
                 coverThumb: "resources/PSEditing.jpg",
                 gridImage: "resources/PSEditing.jpg",
@@ -117,6 +117,19 @@ const portfolioData = {
         items: [
             {
                 modalId: "coding-modal-1",
+                title: "Rug City Racer",
+                mediums: "Video-Driven Web Game",
+                date: "2025",
+                linkText: "Play Rug City Racer",
+                linkUrl: "https://nimosana.github.io/415/",
+                coverThumb: "resources/SplashScreen.webp",
+                desc: "This is where I will place the detailed description for the project. Explain my conceptual approach, the creative process, technical challenges, and final outcome. This modal can easily be duplicated and modified for each work, meow.",
+                slides: [
+                    { type: "webpage", url: "https://nimosana.github.io/415/", thumb: "resources/SplashScreen.webp" },
+                ]
+            },
+            {
+                modalId: "coding-modal-2",
                 title: "Clash of Leadership",
                 mediums: "Web, PHP, MongoDB",
                 date: "2024",
@@ -130,7 +143,7 @@ const portfolioData = {
                 ]
             },
             {
-                modalId: "coding-modal-2",
+                modalId: "coding-modal-3",
                 title: "Herculean",
                 mediums: "Unreal Engine 5",
                 date: "2026",
@@ -144,7 +157,7 @@ const portfolioData = {
                 ]
             },
             {
-                modalId: "coding-modal-3",
+                modalId: "coding-modal-4",
                 title: "Дронтайм!",
                 mediums: "Unity, C#",
                 date: "2026",
@@ -158,7 +171,7 @@ const portfolioData = {
                 ]
             },
             {
-                modalId: "coding-modal-4",
+                modalId: "coding-modal-5",
                 title: "Reflections",
                 mediums: "Real-Time 3D, Unreal Engine 5",
                 date: "2025",
@@ -171,22 +184,6 @@ const portfolioData = {
                     { type: "image", src: "resources/Reflections_4.png", thumb: "resources/Reflections_4.png" }
                 ]
             },
-            {
-                modalId: "coding-modal-5",
-                title: "Rug City Racer",
-                mediums: "Video-Driven Web Game",
-                date: "2025",
-                linkText: "Play Rug City Racer",
-                linkUrl: "https://nimosana.github.io/415/",
-                coverThumb: "resources/SplashScreen.webp",
-                desc: "This is where I will place the detailed description for the project. Explain my conceptual approach, the creative process, technical challenges, and final outcome. This modal can easily be duplicated and modified for each work, meow.",
-                slides: [
-                    // { type: "youtube", videoId: "Y-WiPhEqYOs", thumb: "resources/Reflections_1.jpg" },
-                    { type: "webpage", url: "https://nimosana.github.io/415/", thumb: "resources/SplashScreen.webp" },
-                    // { type: "image", src: "resources/rcr_1.webp", thumb: "resources/rcr_1.webp" },
-                    // { type: "image", src: "resources/rcr_2.webp", thumb: "resources/rcr_2.webp" }
-                ]
-            }
         ]
     },
     physical: {
