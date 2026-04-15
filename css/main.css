@@ -1,0 +1,163 @@
+/* ========================================================================= */
+/* Portfolio Main Page Layout                                                */
+/* ========================================================================= */
+
+.portfolio-layout {
+    display: grid;
+    grid-template-columns: clamp(200px, 20vw, 260px) 1fr;
+    gap: var(--spacing-xl);
+    align-items: start;
+}
+
+.portfolio-sidebar {
+    position: sticky;
+    top: calc(var(--spacing-xl) + 60px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    z-index: 10;
+    animation: slideDownFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: 0.1s;
+}
+
+.portfolio-sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.portfolio-sidebar-menu a {
+    text-decoration: none;
+    font-family: var(--font-family-heading);
+    color: var(--color-text);
+    padding: var(--spacing-xs) 0;
+    transition: color var(--transition-fast), transform var(--transition-fast);
+    display: block;
+}
+
+.portfolio-sidebar-menu a:hover,
+.portfolio-sidebar-menu a:focus-visible {
+    color: var(--color-primary);
+    transform: translateX(4px);
+    outline: none;
+}
+
+.portfolio-content {
+    min-width: 0;
+    max-width: 100vw;
+}
+
+.portfolio-content>section {
+    animation: slideDownFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.portfolio-content>section:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.portfolio-content>section:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.portfolio-content>section:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.portfolio-content>section:nth-child(n+4) {
+    animation-delay: 0.5s;
+}
+
+/* Image Grid */
+.image-grid .grid-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform var(--transition-normal), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.image-grid a {
+    display: block;
+    outline: none;
+}
+
+.image-grid .grid-img:hover,
+.image-grid a:focus .grid-img {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: var(--shadow-md), 0 8px 32px rgba(0, 238, 255, 0.4);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Portrait Overlay & Details on Main Page Slides */
+.portrait-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, transparent 20%, transparent 80%, rgba(0, 0, 0, 0.95) 100%);
+    z-index: 1;
+}
+
+.portrait-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.gallery-slide-link {
+    text-decoration: none;
+}
+
+.gallery-slide-link .portrait-title {
+    color: var(--color-text-muted);
+    transition: color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.3s ease;
+}
+
+.gallery-slide-link .portrait-mediums {
+    color: var(--color-text-muted);
+    transition: color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.05s, text-shadow 0.3s ease;
+}
+
+.gallery-slide-link:hover .portrait-title {
+    color: var(--color-primary);
+    transform: translateX(4px);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 238, 255, 0.4);
+}
+
+.gallery-slide-link:hover .portrait-mediums {
+    color: var(--color-primary);
+    transform: translateX(2px);
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 238, 255, 0.4);
+}
+
+.gallery-slide-link .gallery-hover-expand {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.gallery-slide-link:hover .gallery-hover-expand,
+.gallery-slide-link:focus-visible .gallery-hover-expand {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 1024px) {
+    .portfolio-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .portfolio-sidebar {
+        position: relative;
+        top: 0;
+        margin-bottom: var(--spacing-sm);
+    }
+}

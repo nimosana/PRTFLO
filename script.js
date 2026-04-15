@@ -130,17 +130,21 @@ document.addEventListener("DOMContentLoaded", () => {
                     const prevOnClick = prevId ? `window.switchModal('${item.modalId}', '${prevId}', 'prev'); return false;` : "return false;";
                     const nextOnClick = nextId ? `window.switchModal('${item.modalId}', '${nextId}', 'next'); return false;` : "return false;";
 
-                    let dialogHtml = `<button class="btn btn-image close-modal-btn" aria-label="Close" onclick="window.closeModal('${item.modalId}')" style="position: absolute; top: var(--spacing-md); right: var(--spacing-md); width: 44px; height: 44px; z-index: 100;"><span style="font-family: var(--font-family-heading); font-size: 1.5rem; color: var(--color-primary); display:block; margin-top:-4px;">X</span></button>
+                    let dialogHtml = `<button class="btn btn-image close-modal-btn" aria-label="Close" onclick="window.closeModal('${item.modalId}')"><span class="close-modal-icon">X</span></button>
                     <div class="project-modal-header">
-                        <span style="font-family: var(--font-family-heading); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; color: var(--color-text-muted); opacity: 0.8; display: block; margin-bottom: var(--spacing-xs);">${category.title}</span>
-                        <div class="flex" style="align-items: center; gap: var(--spacing-md); margin-bottom: var(--spacing-xs); flex-wrap: wrap;">
-                            <h2 style="margin: 0;">${item.title}</h2>
-                            <div class="modal-nav-arrows flex" style="gap: var(--spacing-sm);">
-                                <button class="btn modal-nav-prev" onclick="${prevOnClick}" ${!prevId ? 'style="display: none;"' : 'style="padding: 4px 12px; font-size: 1rem;"'} aria-label="Previous Project">&#10094;</button>
-                                <button class="btn modal-nav-next" onclick="${nextOnClick}" ${!nextId ? 'style="display: none;"' : 'style="padding: 4px 12px; font-size: 1rem;"'} aria-label="Next Project">&#10095;</button>
+                        <span class="project-modal-category">${category.title}</span>
+                        <div class="project-modal-title-row">
+                            <h2 class="project-modal-title">${item.title}</h2>
+                            <div class="modal-nav-arrows">
+                                <button class="btn modal-nav-prev" onclick="${prevOnClick}" ${!prevId ? 'style="display: none;"' : ''} aria-label="Previous Project">&#10094;</button>
+                                <button class="btn modal-nav-next" onclick="${nextOnClick}" ${!nextId ? 'style="display: none;"' : ''} aria-label="Next Project">&#10095;</button>
                             </div>
                         </div>
-                        <div class="project-meta flex" style="gap: var(--spacing-md); margin-bottom: var(--spacing-lg); color: var(--color-text-muted); font-family: var(--font-family-heading);"><span><strong style="color: var(--color-primary); font-weight: normal;">Mediums:</strong> ${item.mediums}</span><span><strong style="color: var(--color-primary); font-weight: normal;">Date:</strong> ${item.date}</span>${item.linkUrl ? `<span><strong style="color: var(--color-primary); font-weight: normal;">Link:</strong> <a href="${item.linkUrl}" target="_blank" style="color: var(--color-primary); text-decoration: underline;">${item.linkText || item.linkUrl}</a></span>` : ''}</div>
+                        <div class="project-meta">
+                            <span class="meta-item"><strong class="meta-label">Mediums:</strong> ${item.mediums}</span>
+                            <span class="meta-item"><strong class="meta-label">Date:</strong> ${item.date}</span>
+                            ${item.linkUrl ? `<span class="meta-item"><strong class="meta-label">Link:</strong> <a href="${item.linkUrl}" target="_blank" class="meta-link">${item.linkText || item.linkUrl}</a></span>` : ''}
+                        </div>
                     </div>
                     <div class="project-modal-body"><div class="slideshow-container"><div class="slideshow" data-slideshow-id="${item.modalId}-slides" style="--aspect-ratio: ${item.aspectRatio || '16 / 9'};"><div class="slideshow-track">`;
 
