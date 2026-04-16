@@ -12,7 +12,8 @@ dialog.project-modal {
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: var(--shadow-md), 0 12px 32px rgba(0, 0, 0, 0.7);
-    padding: var(--spacing-md) var(--spacing-md);
+    box-sizing: border-box;
+    padding: var(--spacing-md);
 }
 
 dialog.project-modal::backdrop {
@@ -106,6 +107,7 @@ dialog.project-modal::backdrop {
         max-width: 98vw;
         max-height: 98vh;
         height: 100%;
+        box-sizing: border-box;
         padding: var(--spacing-sm);
         border-radius: var(--radius-sm);
     }
@@ -115,6 +117,7 @@ dialog.project-modal::backdrop {
     }
 }
 
+/* Modal Scrollbar Cleanup */
 /* ========================================================================= */
 /* Modal Futuristic Animations                                              */
 /* ========================================================================= */
@@ -368,6 +371,119 @@ dialog.project-modal.modal-switching-in-left[open] {
     cursor: grabbing;
 }
 
+.comparison-slide.zoomed .comparison-slider {
+    transform: translateX(-50%) scaleX(0.4);
+}
+
 .comparison-slide.zoomed .comparison-slider-icon {
-    transform: translate(-50%, -50%) scale(0.4);
+    transform: translate(-50%, -50%) scaleX(1) scaleY(0.4);
+}
+
+/* ========================================================================= */
+/* Slide Info Bubble Overlay                                                */
+/* ========================================================================= */
+
+.slide-info-toggle {
+    position: absolute;
+    top: calc(var(--spacing-xl) + var(--spacing-md));
+    left: var(--spacing-md);
+    width: 44px;
+    height: 44px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 50%;
+    border: 2px solid var(--color-primary);
+    cursor: pointer;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform var(--transition-fast), background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.slide-info-toggle:hover {
+    transform: scale(1.1);
+    background: var(--color-primary);
+}
+
+.slide-info-toggle .info-icon {
+    width: 28px;
+    height: 28px;
+    background-color: var(--color-primary);
+    -webkit-mask: url('../resources/page/information-mark-circle-outline-icon.svg') no-repeat center / contain;
+    mask: url('../resources/page/information-mark-circle-outline-icon.svg') no-repeat center / contain;
+    transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.slide-info-toggle:hover .info-icon {
+    background-color: #000;
+}
+
+.slide-info-toggle .info-close-icon {
+    position: absolute;
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    font-family: var(--font-family-heading);
+    opacity: 0;
+    transition: opacity var(--transition-fast), transform var(--transition-fast), color var(--transition-fast);
+}
+
+.slide-info-toggle:hover .info-close-icon {
+    color: #000;
+}
+
+.slide-info-toggle.active .info-icon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0.5);
+}
+
+.slide-info-toggle.active .info-close-icon {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+.slide-info-bubble {
+    position: absolute;
+    top: calc(var(--spacing-xl) + var(--spacing-md) + 44px + var(--spacing-sm));
+    left: var(--spacing-md);
+    width: calc(100% - (var(--spacing-md) * 2));
+    max-height: calc(100% - (var(--spacing-xl) + var(--spacing-md) + 44px + var(--spacing-sm)) - var(--spacing-md));
+    overflow-y: auto;
+    z-index: 29;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: opacity var(--transition-normal), transform var(--transition-normal);
+    background-color: var(--color-surface);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow-md), 0 12px 32px rgba(0, 0, 0, 0.7);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+}
+
+.slide-info-bubble p {
+    max-width: none;
+}
+
+.slide-info-bubble.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .slide-info-toggle {
+        top: calc(var(--spacing-xl) + var(--spacing-sm));
+        left: var(--spacing-sm);
+    }
+
+    .slide-info-bubble {
+        left: var(--spacing-sm);
+        width: calc(100% - (var(--spacing-sm) * 2));
+        top: calc(var(--spacing-xl) + var(--spacing-sm) + 44px + var(--spacing-xs));
+        max-height: calc(100% - (var(--spacing-xl) + var(--spacing-sm) + 44px + var(--spacing-xs)) - var(--spacing-sm));
+    }
 }

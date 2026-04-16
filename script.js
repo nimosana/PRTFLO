@@ -148,29 +148,60 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <div class="project-modal-body"><div class="slideshow-container"><div class="slideshow" data-slideshow-id="${item.modalId}-slides" style="--aspect-ratio: ${item.aspectRatio || '16 / 9'};"><div class="slideshow-track">`;
 
-                    item.slides.forEach(slide => {
+                    item.slides.forEach((slide, sIdx) => {
+                        let slideInnerHtml = '';
                         if (slide.type === "youtube") {
-                            dialogHtml += `<div class="slide"><iframe loading="lazy" src="https://www.youtube.com/embed/${slide.videoId}?enablejsapi=1" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
+                            slideInnerHtml = `<iframe loading="lazy" src="https://www.youtube.com/embed/${slide.videoId}?enablejsapi=1" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
                         } else if (slide.type === "webpage") {
-                            dialogHtml += `<div class="slide"><iframe class="generic-webpage" loading="lazy" data-src="${slide.url}" src="about:blank" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
+                            slideInnerHtml = `<iframe class="generic-webpage" loading="lazy" data-src="${slide.url}" src="about:blank" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
                         } else if (slide.type === "comparison") {
-                            dialogHtml += `<div class="slide comparison-slide" onpointerdown="window.handleComparisonDown(event)" onpointermove="window.handleComparisonMove(event)">
-                                <img class="img-before aspect-ratio-4-3" src="${slide.beforeSrc}" alt="Before">
-                                <div class="img-after-wrapper aspect-ratio-4-3">
-                                    <img class="img-after" src="${slide.afterSrc}" alt="After">
-                                </div>
-                                <div class="comparison-slider">
-                                    <div class="comparison-slider-icon">&#8596;</div>
-                                </div>
-                            </div>`;
+                            slideInnerHtml = `<img class="img-before aspect-ratio-4-3" src="${slide.beforeSrc}" alt="Before"><div class="img-after-wrapper aspect-ratio-4-3"><img class="img-after" src="${slide.afterSrc}" alt="After"></div><div class="comparison-slider"><div class="comparison-slider-icon">&#8596;</div></div>`;
                         } else {
-                            dialogHtml += `<div class="slide zoomable-slide" onpointerdown="window.handleComparisonDown(event)" onpointermove="window.handleComparisonMove(event)"><img src="${slide.src}" alt="${item.title} Slide" oncontextmenu="return false;" style="pointer-events: none;"></div>`;
+                            slideInnerHtml = `<img src="${slide.src}" alt="${item.title} Slide" oncontextmenu="return false;" style="pointer-events: none;">`;
                         }
+
+                        let infoHtml = '';
+                        if (item.hasInfo) {
+                            const iTitle = item.independentInfo ? slide.infoTitle : item.infoTitle;
+                            const iText = item.independentInfo ? slide.infoText : item.infoText;
+                            const titles = Array.isArray(iTitle) ? iTitle : (iTitle ? [iTitle] : []);
+                            const texts = Array.isArray(iText) ? iText : (iText ? [iText] : []);
+                            const maxLen = Math.max(titles.length, texts.length);
+
+                            if (maxLen > 0) {
+                                let contentHtml = '';
+                                for (let i = 0; i < maxLen; i++) {
+                                    const t = titles[i];
+                                    const p = texts[i];
+                                    if (t) contentHtml += `<h3 style="margin-top: ${i > 0 ? 'var(--spacing-md)' : '0'}; margin-bottom: var(--spacing-sm);">${t}</h3>`;
+                                    if (p) contentHtml += `<p style="margin: 0;${i < maxLen - 1 && (!titles[i + 1]) ? ' margin-bottom: var(--spacing-md);' : ''}">${p}</p>`;
+                                }
+
+                                infoHtml = `
+                                <button class="slide-info-toggle" aria-label="Toggle Info" onclick="window.toggleSlideInfo(event, this)">
+                                    <div class="info-icon"></div>
+                                    <span class="info-close-icon">X</span>
+                                </button>
+                                <div class="slide-info-bubble surface">
+                                    ${contentHtml}
+                                </div>`;
+                            }
+                        }
+
+                        let extraClasses = slide.type === "comparison" ? " comparison-slide" : (slide.type === "image" || !slide.type) ? " zoomable-slide" : "";
+                        let events = (slide.type === "comparison" || slide.type === "image" || !slide.type) ? ` onpointerdown="window.handleComparisonDown(event)" onpointermove="window.handleComparisonMove(event)"` : "";
+
+                        dialogHtml += `<div class="slide">
+                            <div class="media-container${extraClasses}"${events} style="width: 100%; height: 100%; position: relative;">
+                                ${slideInnerHtml}
+                            </div>
+                            ${infoHtml}
+                        </div>`;
                     });
 
                     dialogHtml += `</div><button class="slide-nav prev" aria-label="Previous frame">&#10094;</button><button class="slide-nav next" aria-label="Next frame">&#10095;</button></div><div class="slideshow-thumbnails">`;
                     item.slides.forEach((slide, idx) => { dialogHtml += `<img tabindex="0" class="thumbnail ${idx === 0 ? 'active' : ''}" src="${slide.thumb}" alt="Thumb ${idx + 1}">`; });
-                    dialogHtml += `</div></div><div class="surface" style="margin-top: var(--spacing-lg); padding: var(--spacing-md);"><h3 style="margin-bottom: var(--spacing-sm);">Project Overview</h3><p>${item.desc}</p></div></div>`;
+                    dialogHtml += `</div></div></div>`;
 
                     dialog.innerHTML = dialogHtml;
                     dialog.addEventListener('cancel', (e) => {
@@ -313,6 +344,7 @@ window.addEventListener('pointerup', (event) => {
 });
 
 window.handleComparisonDown = function (event) {
+    if (event.target.closest('.slide-info-toggle') || event.target.closest('.slide-info-bubble')) return;
     const slide = event.currentTarget;
 
     if (event.pointerType === 'touch') {
@@ -349,6 +381,7 @@ window.handleComparisonDown = function (event) {
 };
 
 window.handleComparisonMove = function (event) {
+    if (event.target.closest('.slide-info-toggle') || event.target.closest('.slide-info-bubble')) return;
     const slide = event.currentTarget;
 
     // Mask logic
@@ -411,6 +444,7 @@ window.handleComparisonMove = function (event) {
 };
 
 window.handleComparisonUp = function (event) {
+    if (event.target && event.target.closest && (event.target.closest('.slide-info-toggle') || event.target.closest('.slide-info-bubble'))) return;
     const slide = event.currentTarget || window.compState.activeSlide;
     if (!slide) return;
 
@@ -474,5 +508,20 @@ window.toggleComparisonZoom = function (slide, clientX, clientY) {
             const yPercent = (0.2 + (0.6 * clickY)) * 100; // ty is 0 natively
             sliderIcon.style.top = `${yPercent}%`;
         }
+    }
+};
+
+window.toggleSlideInfo = function(event, btnElement) {
+    event.stopPropagation();
+    event.preventDefault();
+    const slide = btnElement.closest('.slide');
+    const bubble = slide.querySelector('.slide-info-bubble');
+    
+    if (btnElement.classList.contains('active')) {
+        btnElement.classList.remove('active');
+        bubble.classList.remove('active');
+    } else {
+        btnElement.classList.add('active');
+        bubble.classList.add('active');
     }
 };

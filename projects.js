@@ -2,14 +2,75 @@ const portfolioData = {
     film: {
         id: "film-video",
         title: "Film & Video",
-        type: "video_gallery",
+        type: "project_gallery",
         items: [
-            { title: "Mon épicier", videoId: "Jz9K6cX3fEY", thumb: "resources/Works/Video/MonEpicier.jpg" },
-            { title: "Thermal Shutdown", videoId: "SnsG77LGZvs", thumb: "resources/Works/Video/ThermalShutdown.jpg" },
-            { title: "Brick by Brick", videoId: "aFLu1FLZkQE", thumb: "resources/Works/Video/BrickByBrick.jpg" },
-            { title: "L'exposition Abandonnée", videoId: "-pJ0PG24Od4", thumb: "resources/Works/Video/ExpoAbandonnee.jpg" },
-            { title: "The city, the body", videoId: "G0hbverd19M", thumb: "resources/Works/Video/CityBody.jpg" },
-            { title: "Les rues de Montréal", videoId: "-J4v9c1_ru8", thumb: "resources/Works/Video/RuesDeMTL.jpg" },
+            {
+                modalId: "film-modal-1",
+                title: "Mon épicier",
+                mediums: "Video Installation",
+                date: "2026",
+                coverThumb: "resources/Works/Video/MonEpicier.jpg",
+                hasInfo: true,
+                independentInfo: false,
+                infoTitle: ["Installation Context",
+                    "Main video narrative",
+                    "Goal of the installation"],
+                infoText: ["The soundscape and large projections that dominate the installation space create an eerie supermarket environment, with controlled product presentation and marketing. Long shots of aisles saturated with products, branding, and promises of sustainability are filmed from behind the bars of a shopping cart. This is meant to overload the viewer with the intensity of the marketing, while symbolizing how most consumers are effectively trapped within these consumption ecosystems, prisoners of a system that presents brand images and ideals, while concealing, funding and perpetuating suffering throughout the production chain. The main video has no sound to mark the distance between the viewer and the reality of the production chain.",
+                    "The executive embodies large food corporations whose products are neatly presented in supermarkets, while the sicario represents the proxy groups used to sustain production chains regardless of cost or legality. The luring and caging of the children through money serves as an analogy for how these corporations exploit vulnerable regions and populations, coercing or even enslaving them for profit. The bettors, wagering with currencies from different continents and inciting the children to use food as weapons, symbolize global consumers who are driven to fund and perpetuate this violence from a distance. The elimination of the children, the loss of wages by the bettors, and the cyclical structure of the narrative, returning to the car with more money and goods to begin again, underscore how the only real beneficiaries are the corporations, while vulnerable regions and populations are dehumanized, and consumers are reduced to instruments that reinforce the cycle of consolidating money and power.",
+                    "What unites United Fruit and Chiquita, Coca-Cola, Thai Union and Clover Leaf, Nestlé, Mars, Ferrero, Mondelēz, and the avocado and fresh produce industries is not only a documented record of violence, complicity, trafficking, and child exploitation, it is the systematic distance these corporations have cultivated between those harms and the consumer. By the time a chocolate bar, a can of tuna, a bottle of Coca-Cola, or a bag of avocados reaches a supermarket shelf, it has been stripped of its history and repackaged in the language of pleasure, sustainability, and care. This concealment is not incidental to the exploitation: it is inseparable from it. The brand's value depends precisely on the consumer never confronting what the supply chain contains, which is what this installation forces the viewer to do."],
+                slides: [{ type: "youtube", videoId: "Jz9K6cX3fEY", thumb: "resources/Works/Video/MonEpicier.jpg" }]
+            },
+            {
+                modalId: "film-modal-3",
+                title: "Brick by Brick",
+                mediums: "Video, Audio Synchronization",
+                date: "2026",
+                coverThumb: "resources/Works/Video/BrickByBrick.jpg",
+                hasInfo: true,
+                independentInfo: false,
+                infoTitle: "Brick by Brick",
+                infoText: "Description for Brick by Brick.",
+                slides: [{ type: "youtube", videoId: "aFLu1FLZkQE", thumb: "resources/Works/Video/BrickByBrick.jpg" }]
+            },
+            {
+                modalId: "film-modal-2",
+                title: "Thermal Shutdown",
+                mediums: "Film, Video",
+                date: "2026",
+                coverThumb: "resources/Works/Video/ThermalShutdown.jpg",
+                hasInfo: true,
+                independentInfo: false,
+                infoTitle: "Thermal Shutdown",
+                infoText: "Description for Thermal Shutdown.",
+                slides: [{ type: "youtube", videoId: "SnsG77LGZvs", thumb: "resources/Works/Video/ThermalShutdown.jpg" }]
+            },
+            {
+                modalId: "film-modal-4",
+                title: "L'exposition Abandonnée",
+                mediums: "Film, Video",
+                date: "2026",
+                coverThumb: "resources/Works/Video/ExpoAbandonnee.jpg",
+                hasInfo: false,
+                slides: [{ type: "youtube", videoId: "-pJ0PG24Od4", thumb: "resources/Works/Video/ExpoAbandonnee.jpg" }]
+            },
+            {
+                modalId: "film-modal-5",
+                title: "The city, the body",
+                mediums: "Film, Video",
+                date: "2026",
+                coverThumb: "resources/Works/Video/CityBody.jpg",
+                hasInfo: false,
+                slides: [{ type: "youtube", videoId: "G0hbverd19M", thumb: "resources/Works/Video/CityBody.jpg" }]
+            },
+            {
+                modalId: "film-modal-6",
+                title: "Les rues de Montréal",
+                mediums: "Film, Video",
+                date: "2026",
+                coverThumb: "resources/Works/Video/RuesDeMTL.jpg",
+                hasInfo: false,
+                slides: [{ type: "youtube", videoId: "-J4v9c1_ru8", thumb: "resources/Works/Video/RuesDeMTL.jpg" }]
+            }
         ]
     },
     photography: {
@@ -26,11 +87,25 @@ const portfolioData = {
                 date: "2026",
                 coverThumb: "resources/Works/Photo/PSEditing.jpg",
                 gridImage: "resources/Works/Photo/PSEditing.jpg",
-                desc: "This is where I will place the detailed description for the project. Explain my conceptual approach, the creative process, technical challenges, and final outcome. This modal can easily be duplicated and modified for each work, meow.",
+                hasInfo: true,
+                independentInfo: true,
                 slides: [
-                    { type: "comparison", beforeSrc: "resources/Works/Photo/triptych_before.jpg", afterSrc: "resources/Works/Photo/triptych_after.jpg", thumb: "resources/Works/Photo/triptych_after.jpg" },
-                    { type: "comparison", beforeSrc: "resources/Works/Photo/highres_scan.jpg", afterSrc: "resources/Works/Photo/highres_scan_after.jpg", thumb: "resources/Works/Photo/highres_scan_after.jpg" },
-                    { type: "image", src: "resources/Works/Coding/SplashScreen.webp", thumb: "resources/Works/Coding/SplashScreen.webp" },
+                    {
+                        type: "comparison", beforeSrc: "resources/Works/Photo/triptych_before.jpg", afterSrc: "resources/Works/Photo/triptych_after.jpg",
+                        thumb: "resources/Works/Photo/triptych_after.jpg",
+                        infoTitle: ["Digital Photography (Nikon D3500, 18-55mm f/3.5-5.6)",
+                            "Photoshop Editing and Compositing",
+                            "Fine Arts Printing"],
+                        infoText: ["With a tripod, I captured a large amount of images of this landscape, with varying shutter speeds. This was before I got my own camera, and it was difficult because the lens was zoomed to 55mm, limiting the largest aperture to f/5.6. Consequently, I had to considerably increase ISO at faster shutter speeds, introducing alot of noise and limiting the visibility of still cars in the images, but it unknowingly resulted the ghostly appearance of those who appear, which I ended up liking.",
+                            "In Photoshop, I selected and overlaid my 10 favorite pictures and carefully composited elements of each, allowing me to decide which visuals to keep, and how to arrange them. This allowed me to use elements from varying shutter speeds and create a cohesive image while ensuring they weren't awkwardly superposed, it also let me take advantage of the low-noise of the long-exposures while showcasing the details of the short-exposures.",
+                            "This image was one of a series of three prints, the version presented here is the final digital version, but colors and light levels were adjusted iteratively to obtain a high-quality print."]
+                    },
+                    {
+                        type: "comparison", beforeSrc: "resources/Works/Photo/highres_scan.jpg", afterSrc: "resources/Works/Photo/highres_scan_after.jpg", thumb: "resources/Works/Photo/highres_scan_after.jpg",
+                        infoTitle: "Old Photograph Restoration",
+                        infoText: "This old photograph from my childhood was noticeably dirty and damaged. It was digitized through a high resolution scanner into an uncompressed .TIFF file, and debris and scratches were manually and meticulously removed. The colors were adjusted to give it a more vibrant look, while increasing details in the darker and blown out areas. A distracting element on the right was also removed through delicate use of the stamp tool to focus the attention on the main subject (me!)."
+                    },
+                    { type: "image", src: "resources/Works/Coding/SplashScreen.webp", thumb: "resources/Works/Coding/SplashScreen.webp", infoTitle: "Splash Screen Interface", infoText: "A conceptual splash screen showcasing graphic design practices by mixing vibrant colors and diverse visual sources to create an engaging presentation." },
                 ]
             },
             // {
@@ -74,7 +149,10 @@ const portfolioData = {
                 mediums: "Real-time 3D (Unreal Engine 5)",
                 date: "2026",
                 coverThumb: "resources/Works/3D/submerged_1.jpg",
-                desc: "This project engages with the themes of hidden social and technological architectures by submerging the Unreal engine City Sample under an ocean of polluted water, illustrating how people seem to persist unbothered in their daily routines even as the world around them collapses. The player spawns as an immobilized ragdoll, unable to move or act, reduced to observing the environment. This perspective highlights how contemporary life is shaped by opaque systems, critiquing how consumption, waste cycles, automation, and luxury shape our everyday existence. The work the work critiques how objects pushed as conveniences usually are most likely in the interest of profit, than global improvements, and lead to both an environmental and social overload. The city therefore represents our normalization of excess, and the invisible mechanisms sustaining and pushing it.",
+                hasInfo: true,
+                independentInfo: false,
+                infoTitle: "Project Context & Concept",
+                infoText: "This project engages with the themes of hidden social and technological architectures by submerging the Unreal engine City Sample under an ocean of polluted water, illustrating how people seem to persist unbothered in their daily routines even as the world around them collapses. The player spawns as an immobilized ragdoll, unable to move or act, reduced to observing the environment. This perspective highlights how contemporary life is shaped by opaque systems, critiquing how consumption, waste cycles, automation, and luxury shape our everyday existence. The work critiques how objects pushed as conveniences are usually in the interest of profit rather than global improvements, leading to both an environmental and social overload. The city therefore represents our normalization of excess, and the invisible mechanisms sustaining and pushing it.",
                 slides: [
                     { type: "youtube", videoId: "QJe2xmmnVCs", thumb: "resources/Works/3D/submerged_1.jpg" },
                     { type: "image", src: "resources/Works/3D/submerged_20.jpg", thumb: "resources/Works/3D/submerged_20.jpg" },
