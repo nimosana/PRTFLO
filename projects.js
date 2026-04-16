@@ -14,16 +14,16 @@ const portfolioData = {
                 independentInfo: false,
                 infoTitle: ["Installation Context",
                     "Main video narrative",
-                    "Goal of the installation"],
-                infoText: ["The soundscape and large projections that dominate the installation space create an eerie supermarket environment, with controlled product presentation and marketing. Long shots of aisles saturated with products, branding, and promises of sustainability are filmed from behind the bars of a shopping cart. This is meant to overload the viewer with the intensity of the marketing, while symbolizing how most consumers are effectively trapped within these consumption ecosystems, prisoners of a system that presents brand images and ideals, while concealing, funding and perpetuating suffering throughout the production chain. The main video has no sound to mark the distance between the viewer and the reality of the production chain.",
+                    "Filming process"],
+                infoText: ["The soundscape and large projections that dominate the installation space create an eerie supermarket environment, with controlled product presentation and marketing. Long shots of aisles saturated with products, branding, and promises of sustainability are filmed from behind the bars of a shopping cart. This is meant to overload the viewer with the intensity of the marketing, while symbolizing how most consumers are effectively trapped within these consumption ecosystems, prisoners of a system that presents brand images and ideals, while concealing, funding and perpetuating suffering throughout the production chain. The main video has no sound to mark the distance between the viewer and the reality of the production chain. <br><br>What unites United Fruit and Chiquita, Coca-Cola, Thai Union and Clover Leaf, Nestlé, Mars, Ferrero, Mondelēz, and the avocado and fresh produce industries is not only a documented record of violence, complicity, trafficking, and child exploitation, it is the systematic distance these corporations have cultivated between those harms and the consumer. By the time a chocolate bar, a can of tuna, a bottle of Coca-Cola, or a bag of avocados reaches a supermarket shelf, it has been stripped of its history and repackaged in the language of pleasure, sustainability, and care. This concealment is not incidental to the exploitation: it is inseparable from it. The brand's value depends precisely on the consumer never confronting what the supply chain contains, which is what this installation forces the viewer to do.",
                     "The executive embodies large food corporations whose products are neatly presented in supermarkets, while the sicario represents the proxy groups used to sustain production chains regardless of cost or legality. The luring and caging of the children through money serves as an analogy for how these corporations exploit vulnerable regions and populations, coercing or even enslaving them for profit. The bettors, wagering with currencies from different continents and inciting the children to use food as weapons, symbolize global consumers who are driven to fund and perpetuate this violence from a distance. The elimination of the children, the loss of wages by the bettors, and the cyclical structure of the narrative, returning to the car with more money and goods to begin again, underscore how the only real beneficiaries are the corporations, while vulnerable regions and populations are dehumanized, and consumers are reduced to instruments that reinforce the cycle of consolidating money and power.",
-                    "What unites United Fruit and Chiquita, Coca-Cola, Thai Union and Clover Leaf, Nestlé, Mars, Ferrero, Mondelēz, and the avocado and fresh produce industries is not only a documented record of violence, complicity, trafficking, and child exploitation, it is the systematic distance these corporations have cultivated between those harms and the consumer. By the time a chocolate bar, a can of tuna, a bottle of Coca-Cola, or a bag of avocados reaches a supermarket shelf, it has been stripped of its history and repackaged in the language of pleasure, sustainability, and care. This concealment is not incidental to the exploitation: it is inseparable from it. The brand's value depends precisely on the consumer never confronting what the supply chain contains, which is what this installation forces the viewer to do."],
+                    "The filming process involved the collaboration of multiple actors, including children, the filming took part in different places, and involved multiple cameras, including a drone. This made this project a long and complicated process, and put my organizational and directing capabilities to the test. Despite the difficulties, I believe this was a very rewarding experience, allowing me to explore video in the context of installation art, and delving into the directing and production of more complex video art."],
                 slides: [{ type: "youtube", videoId: "Jz9K6cX3fEY", thumb: "resources/Works/Video/MonEpicier.jpg" }]
             },
             {
-                modalId: "film-modal-3",
+                modalId: "film-modal-2",
                 title: "Brick by Brick",
-                mediums: "Video, Audio Synchronization",
+                mediums: "Music Video, Audio Synchronization",
                 date: "2026",
                 coverThumb: "resources/Works/Video/BrickByBrick.jpg",
                 hasInfo: true,
@@ -33,7 +33,23 @@ const portfolioData = {
                 slides: [{ type: "youtube", videoId: "aFLu1FLZkQE", thumb: "resources/Works/Video/BrickByBrick.jpg" }]
             },
             {
-                modalId: "film-modal-2",
+                modalId: "film-modal-3",
+                title: "L'exposition Abandonnée",
+                mediums: "Photography series & Installation, Video",
+                date: "2026",
+                coverThumb: "resources/Works/Video/ExpoAbandonnee.jpg",
+                hasInfo: true,
+                independentInfo: false,
+                infoTitle: ["Photography series context",
+                    "Idea behind the project",
+                    "Why I made this video"],
+                infoText: ["This project, L'Exposition Abandonnée, aims to explore and raise questions about Montreal's abandoned places, nature, and the relationship between them. The series of 16 photographs present scenes where nature is seen reclaiming places we've abandoned, highlighting its prevalence and the temporality of human constructions. The project was exhibited in an abandoned structure, vestige of its surrounding obsolete train tracks, a place notably defended from threats of urbanization by the neighborhood of Hochelaga for its greenery & nature. The installation aims to further immerse the viewers into the exhibition's theme, creating dialogue between the artworks and their surroundings.",
+                    "The sights presented in the photographs are a reminder of our continuously shifting environment, cycles of beginning and end, the resilience of nature but also the need of animals and greenery for free spaces. At a time where the value of land has never been higher, and amidst an ecological crisis from industrialization, urbanization and pollution, the project aims to provoke reflection about what to do with these spots. As most abandoned places finish by being demolished or repurposed, the exhibition and its location invite discussion about how to continue working towards a better balance between our needs for urban development and nature.",
+                    "I wanted to leave/abandon the photographs at the location to further my concept, making it a free/open exhibition, presenting alternative uses to these kinds of abandoned structures, while also leaving the frames to the mercy of time and nature, allowing to see their eventual degradation. However, due to budget constraints, and the costs/difficulty of replacing any potentially stolen or destroyed photographs from the installation, the frames were removed from the location. For this reason, the video produced, where the 16 frames are seen installed at the abandoned location, interacting with nature and their environment, serves as a more complete visualisation of my envisioned concept."],
+                slides: [{ type: "youtube", videoId: "-pJ0PG24Od4", thumb: "resources/Works/Video/ExpoAbandonnee.jpg" }]
+            },
+            {
+                modalId: "film-modal-4",
                 title: "Thermal Shutdown",
                 mediums: "Film, Video",
                 date: "2026",
@@ -43,15 +59,6 @@ const portfolioData = {
                 infoTitle: "Thermal Shutdown",
                 infoText: "Description for Thermal Shutdown.",
                 slides: [{ type: "youtube", videoId: "SnsG77LGZvs", thumb: "resources/Works/Video/ThermalShutdown.jpg" }]
-            },
-            {
-                modalId: "film-modal-4",
-                title: "L'exposition Abandonnée",
-                mediums: "Film, Video",
-                date: "2026",
-                coverThumb: "resources/Works/Video/ExpoAbandonnee.jpg",
-                hasInfo: false,
-                slides: [{ type: "youtube", videoId: "-pJ0PG24Od4", thumb: "resources/Works/Video/ExpoAbandonnee.jpg" }]
             },
             {
                 modalId: "film-modal-5",

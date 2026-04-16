@@ -90,8 +90,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (category.type === "video_gallery") {
                     html += `<div class="slide"><iframe loading="lazy" src="https://www.youtube.com/embed/${item.videoId}?enablejsapi=1" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`;
                 } else {
-                    html += `<div class="slide"><a href="#" onclick="window.openModal('${item.modalId}'); return false;" class="gallery-slide-link" style="position: relative; display: block; height: 100%; border-radius: var(--radius-md); overflow: hidden;">
-                        <img src="${item.coverThumb}" alt="${item.title}" style="display: block; width: 100%; height: 100%; object-fit: cover;">
+                    html += `<div class="slide"><a href="#" onclick="window.openModal('${item.modalId}'); return false;" class="gallery-slide-link" style="position: relative; display: block; height: 100%; border-radius: var(--radius-md); overflow: hidden; -webkit-user-drag: none; -webkit-touch-callout: none;" oncontextmenu="return false;" draggable="false">
+                        <img src="${item.coverThumb}" alt="${item.title}" style="display: block; width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; -webkit-touch-callout: none;" draggable="false" oncontextmenu="return false;">
                         <div class="portrait-overlay"></div>
                         <div class="portrait-content gallery-portrait-content">
                             <h2 class="portrait-title" style="margin-bottom: 0;">${item.title}</h2>
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             html += `</div><button class="slide-nav prev" aria-label="Previous frame">&#10094;</button><button class="slide-nav next" aria-label="Next frame">&#10095;</button></div><div class="slideshow-thumbnails">`;
             category.items.forEach((item, index) => {
-                html += `<img tabindex="0" class="thumbnail ${index === 0 ? 'active' : ''}" src="${category.type === 'video_gallery' ? item.thumb : item.coverThumb}" alt="Thumbnail ${index + 1}">`;
+                html += `<img tabindex="0" class="thumbnail ${index === 0 ? 'active' : ''}" src="${category.type === 'video_gallery' ? item.thumb : item.coverThumb}" alt="Thumbnail ${index + 1}" draggable="false" oncontextmenu="return false;" style="-webkit-user-drag: none; -webkit-touch-callout: none;">`;
             });
             html += `</div></div>`;
 
@@ -155,9 +155,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         } else if (slide.type === "webpage") {
                             slideInnerHtml = `<iframe class="generic-webpage" loading="lazy" data-src="${slide.url}" src="about:blank" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
                         } else if (slide.type === "comparison") {
-                            slideInnerHtml = `<img class="img-before aspect-ratio-4-3" src="${slide.beforeSrc}" alt="Before"><div class="img-after-wrapper aspect-ratio-4-3"><img class="img-after" src="${slide.afterSrc}" alt="After"></div><div class="comparison-slider"><div class="comparison-slider-icon">&#8596;</div></div>`;
+                            slideInnerHtml = `<img class="img-before aspect-ratio-4-3" src="${slide.beforeSrc}" alt="Before" draggable="false" oncontextmenu="return false;" style="pointer-events: none; -webkit-user-drag: none; -webkit-touch-callout: none;"><div class="img-after-wrapper aspect-ratio-4-3"><img class="img-after" src="${slide.afterSrc}" alt="After" draggable="false" oncontextmenu="return false;" style="pointer-events: none; -webkit-user-drag: none; -webkit-touch-callout: none;"></div><div class="comparison-slider"><div class="comparison-slider-icon">&#8596;</div></div>`;
                         } else {
-                            slideInnerHtml = `<img src="${slide.src}" alt="${item.title} Slide" oncontextmenu="return false;" style="pointer-events: none;">`;
+                            slideInnerHtml = `<img src="${slide.src}" alt="${item.title} Slide" oncontextmenu="return false;" draggable="false" style="pointer-events: none; -webkit-user-drag: none; -webkit-touch-callout: none;">`;
                         }
 
                         let infoHtml = '';
@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     });
 
                     dialogHtml += `</div><button class="slide-nav prev" aria-label="Previous frame">&#10094;</button><button class="slide-nav next" aria-label="Next frame">&#10095;</button></div><div class="slideshow-thumbnails">`;
-                    item.slides.forEach((slide, idx) => { dialogHtml += `<img tabindex="0" class="thumbnail ${idx === 0 ? 'active' : ''}" src="${slide.thumb}" alt="Thumb ${idx + 1}">`; });
+                    item.slides.forEach((slide, idx) => { dialogHtml += `<img tabindex="0" class="thumbnail ${idx === 0 ? 'active' : ''}" src="${slide.thumb}" alt="Thumb ${idx + 1}" draggable="false" oncontextmenu="return false;" style="-webkit-user-drag: none; -webkit-touch-callout: none;">`; });
                     dialogHtml += `</div></div></div>`;
 
                     dialog.innerHTML = dialogHtml;
