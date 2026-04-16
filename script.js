@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     html += `<div class="slide"><a href="#" onclick="window.openModal('${item.modalId}'); return false;" class="gallery-slide-link" style="position: relative; display: block; height: 100%; border-radius: var(--radius-md); overflow: hidden;">
                         <img src="${item.coverThumb}" alt="${item.title}" style="display: block; width: 100%; height: 100%; object-fit: cover;">
                         <div class="portrait-overlay"></div>
-                        <div class="portrait-content" style="position: absolute; top: var(--spacing-sm); left: var(--spacing-sm); bottom: auto; text-align: left; padding: var(--spacing-md); justify-content: flex-start; z-index: 10;">
+                        <div class="portrait-content gallery-portrait-content">
                             <h2 class="portrait-title" style="margin-bottom: 0;">${item.title}</h2>
                             <h3 class="portrait-mediums" style="margin: 0; margin-top: var(--spacing-xs); font-family: var(--font-family-heading); font-size: 0.9rem;">${item.mediums}</h3>
                             <h3 class="gallery-hover-expand" style="margin: 0; margin-top: var(--spacing-md); font-family: var(--font-family-heading); font-size: 1rem; color: var(--color-primary);">Click to expand</h3>

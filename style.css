@@ -839,6 +839,25 @@ button.btn-image img {
     transform: translateY(0);
 }
 
+.gallery-portrait-content {
+    position: absolute;
+    top: var(--spacing-sm);
+    left: var(--spacing-sm);
+    bottom: auto;
+    text-align: left;
+    padding: var(--spacing-md);
+    justify-content: flex-start;
+    z-index: 10;
+}
+
+@media (max-width: 768px) {
+    .gallery-portrait-content {
+        top: 0;
+        left: 0;
+        padding: var(--spacing-sm);
+    }
+}
+
 /* Slideshow Thumbnails */
 .slideshow-thumbnails {
     display: flex;
