@@ -102,6 +102,14 @@ dialog.project-modal::backdrop {
 }
 
 @media (max-width: 768px) {
+    dialog.project-modal {
+        max-width: 98vw;
+        max-height: 98vh;
+        height: 100%;
+        padding: var(--spacing-sm);
+        border-radius: var(--radius-sm);
+    }
+
     .project-modal-header {
         padding-top: var(--spacing-xl);
     }

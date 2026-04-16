@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
             section.id = category.id;
             section.className = "surface";
 
-            let html = `<h1>${category.title}</h1>`;
+            let html = `<h2>${category.title}</h2>`;
             if (category.description) html += `<p>${category.description}</p>`;
 
             html += `<div class="slideshow-container"><div class="slideshow" data-slideshow-id="${category.id}"><div class="slideshow-track">`;

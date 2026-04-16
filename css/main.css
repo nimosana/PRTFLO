@@ -93,60 +93,6 @@
     border-color: rgba(255, 255, 255, 0.3);
 }
 
-/* Portrait Overlay & Details on Main Page Slides */
-.portrait-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, transparent 20%, transparent 80%, rgba(0, 0, 0, 0.95) 100%);
-    z-index: 1;
-}
-
-.portrait-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.gallery-slide-link {
-    text-decoration: none;
-}
-
-.gallery-slide-link .portrait-title {
-    color: var(--color-text-muted);
-    transition: color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), text-shadow 0.3s ease;
-}
-
-.gallery-slide-link .portrait-mediums {
-    color: var(--color-text-muted);
-    transition: color 0.3s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) 0.05s, text-shadow 0.3s ease;
-}
-
-.gallery-slide-link:hover .portrait-title {
-    color: var(--color-primary);
-    transform: translateX(4px);
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 238, 255, 0.4);
-}
-
-.gallery-slide-link:hover .portrait-mediums {
-    color: var(--color-primary);
-    transform: translateX(2px);
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 238, 255, 0.4);
-}
-
-.gallery-slide-link .gallery-hover-expand {
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.4s ease, transform 0.4s ease;
-}
-
-.gallery-slide-link:hover .gallery-hover-expand,
-.gallery-slide-link:focus-visible .gallery-hover-expand {
-    opacity: 1;
-    transform: translateY(0);
-}
 
 @media (max-width: 1024px) {
     .portfolio-layout {

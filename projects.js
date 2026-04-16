@@ -30,7 +30,7 @@ const portfolioData = {
                 slides: [
                     { type: "comparison", beforeSrc: "resources/Works/Photo/triptych_before.jpg", afterSrc: "resources/Works/Photo/triptych_after.jpg", thumb: "resources/Works/Photo/triptych_after.jpg" },
                     { type: "comparison", beforeSrc: "resources/Works/Photo/highres_scan.jpg", afterSrc: "resources/Works/Photo/highres_scan_after.jpg", thumb: "resources/Works/Photo/highres_scan_after.jpg" },
-                    { type: "image", src: "resources/Works/Photo/SplashScreen.webp", thumb: "resources/Works/Photo/SplashScreen.webp" },
+                    { type: "image", src: "resources/Works/Coding/SplashScreen.webp", thumb: "resources/Works/Coding/SplashScreen.webp" },
                 ]
             },
             // {
