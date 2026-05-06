@@ -233,12 +233,12 @@ const portfolioData = {
                 mediums: "Web, PHP, MongoDB",
                 date: "2024",
                 coverThumb: "resources/Works/Coding/COL1.png",
-                desc: "This is where I will place the detailed description for the project. Explain my conceptual approach, the creative process, technical challenges, and final outcome. This modal can easily be duplicated and modified for each work, meow.",
+                hasInfo: true,
+                independentInfo: false,
+                infoTitle: ["Project Context & Concept"],
+                infoText: ["This ambitious project aims to become a sidekick for Clash of Clans players, more specifically clan leaders. The webpage facilitates the visualization of any given clan, providing relevant information about a clan. Ratings calculated for each clanmate (based on both historic and real-time game data) and various graphs and comparison tools allow users to save time and get a more in depth view of the state of their clan. The webpage collects and uses historical data about clans and its players through PHP and MongoDB."],
                 slides: [
                     { type: "youtube", videoId: "dbcybj-Risw", thumb: "resources/Works/Coding/COL1.png" },
-                    // { type: "image", src: "resources/photography_project_1_1776021263989.png", thumb: "resources/photography_project_1_1776021263989.png" },
-                    // { type: "image", src: "resources/creative_coding_1_1776021311202.png", thumb: "resources/creative_coding_1_1776021311202.png" },
-                    // { type: "image", src: "resources/3d_animation_1_1776021296612.png", thumb: "resources/3d_animation_1_1776021296612.png" }
                 ]
             },
             {
@@ -325,7 +325,10 @@ const portfolioData = {
                 mediums: "3D Fabrication",
                 date: "2026",
                 coverThumb: "resources/Works/Physical/n50x.jpg",
-                desc: "This is where I will place the detailed description for the project. Explain my conceptual approach, the creative process, technical challenges, and final outcome. This modal can easily be duplicated and modified for each work, meow.",
+                hasInfo: true,
+                independentInfo: false,
+                infoTitle: ["Project Context & Concept"],
+                infoText: ["After soldering the circuitry to save my headphones, I had to make a replacement part for them. Based on the original, I prototyped and improved through multiple 3D printed models, extending their life cycle. After obtaining a functional model, I further improved it aesthetically."],
                 slides: [
                     { type: "image", src: "resources/Works/Physical/n50x.jpg", thumb: "resources/Works/Physical/n50x.jpg" },
                     { type: "image", src: "resources/Works/Physical/n50x_3.jpg", thumb: "resources/Works/Physical/n50x_3.jpg" },
