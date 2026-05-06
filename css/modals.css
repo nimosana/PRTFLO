@@ -1,7 +1,6 @@
 /* ========================================================================= */
 /* Project Modal Dialog                                                     */
 /* ========================================================================= */
-
 dialog.project-modal {
     max-width: 80vw;
     width: 100%;
@@ -83,7 +82,7 @@ dialog.project-modal::backdrop {
 .project-meta {
     display: flex;
     gap: var(--spacing-md);
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
     color: var(--color-text-muted);
     font-family: var(--font-family-heading);
 }
@@ -476,14 +475,24 @@ dialog.project-modal.modal-switching-in-left[open] {
 
 @media (max-width: 768px) {
     .slide-info-toggle {
-        top: calc(var(--spacing-xl) + var(--spacing-sm));
+        top: var(--spacing-sm);
         left: var(--spacing-sm);
+        width: 36px;
+        height: 36px;
+    }
+
+    .slide-info-toggle .info-icon {
+        width: 22px;
+        height: 22px;
     }
 
     .slide-info-bubble {
+        position: fixed;
+        top: auto;
+        bottom: auto;
         left: var(--spacing-sm);
-        width: calc(100% - (var(--spacing-sm) * 2));
-        top: calc(var(--spacing-xl) + var(--spacing-sm) + 44px + var(--spacing-xs));
-        max-height: calc(100% - (var(--spacing-xl) + var(--spacing-sm) + 44px + var(--spacing-xs)) - var(--spacing-sm));
+        right: var(--spacing-sm);
+        width: auto;
+        max-height: 60vh;
     }
 }

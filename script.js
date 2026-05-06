@@ -279,6 +279,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (currentIndex !== index) {
                         pauseAllIframes(track);
                         currentIndex = index;
+                        // Auto-collapse any open info bubbles on navigate
+                        container.querySelectorAll('.slide-info-toggle.active, .slide-info-bubble.active').forEach(el => el.classList.remove('active'));
                         window.loadActiveIframes(container.closest('dialog'));
                         updateActiveThumbnail(index);
                         updateSlideNav(index);
@@ -521,6 +523,16 @@ window.toggleSlideInfo = function(event, btnElement) {
         btnElement.classList.remove('active');
         bubble.classList.remove('active');
     } else {
+        const dialog = btnElement.closest('dialog');
+        if (dialog && window.matchMedia("(max-width: 768px)").matches) {
+            const btnRect = btnElement.getBoundingClientRect();
+            const dialogRect = dialog.getBoundingClientRect();
+            const topOffset = btnRect.bottom - dialogRect.top + 8;
+            bubble.style.top = `${topOffset}px`;
+        } else {
+            bubble.style.top = '';
+        }
+
         btnElement.classList.add('active');
         bubble.classList.add('active');
     }

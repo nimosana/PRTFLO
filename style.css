@@ -777,6 +777,7 @@ button.btn-image img {
     display: block;
     outline: none;
 }
+
 .image-grid .grid-img:hover,
 .image-grid a:focus .grid-img {
     transform: translateY(-4px) scale(1.02);

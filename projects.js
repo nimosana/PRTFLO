@@ -28,8 +28,9 @@ const portfolioData = {
                 coverThumb: "resources/Works/Video/BrickByBrick.jpg",
                 hasInfo: true,
                 independentInfo: false,
-                infoTitle: "Brick by Brick",
-                infoText: "Description for Brick by Brick.",
+                infoTitle: ["Brick by Brick", "Footage"],
+                infoText: ["This project attempts to share my disagreements about complex aspects of the system we live in, making a critical commentary on consumerism, exploitation, corruption, and other failures of our systems. Throughout the video, the world is compared to a webpage, containing an infinite cycle of workers endlessly laying bricks, replaced by children which grow back into workers. The disconnection of the computer at the end symbolizes a feeling tiredness and of powerlessness, and wanting to put a stop to the self-sustaining system of exploitation.",
+                    "This project used some footage I had shot previously for other projects. Combining it with some newly shot footage allowed me to create a strong and coherent narrative with impressive visuals, and pushed my editing skills to a new level with audio synchronization."],
                 slides: [{ type: "youtube", videoId: "aFLu1FLZkQE", thumb: "resources/Works/Video/BrickByBrick.jpg" }]
             },
             {
@@ -50,34 +51,42 @@ const portfolioData = {
             },
             {
                 modalId: "film-modal-4",
-                title: "Thermal Shutdown",
+                title: "Les rues de Montréal",
                 mediums: "Film, Video",
                 date: "2026",
-                coverThumb: "resources/Works/Video/ThermalShutdown.jpg",
+                coverThumb: "resources/Works/Video/RuesDeMTL.jpg",
                 hasInfo: true,
                 independentInfo: false,
-                infoTitle: "Thermal Shutdown",
-                infoText: "Description for Thermal Shutdown.",
-                slides: [{ type: "youtube", videoId: "SnsG77LGZvs", thumb: "resources/Works/Video/ThermalShutdown.jpg" }]
+                infoTitle: ["Les rues de Montréal", "The board game"],
+                infoText: ["This piece takes you on a ride around Montreal to portray its streets, highlighting their state of decay and perpetual construction. Drawing a parallel of how it might be a game to some, the visuals and audio complement each other as the song “Bugz Bonné” by Sans Pression reinforces the message. The goal being to bring reflection about the mismanagement of these construction works and their funding.",
+                    "The board game featured in the video is an unrelated project made for a game design course, where the idea was to create a game parodying the difficulty of finding parking due to the city’s notorious parking restrictions.<br><br>More details about this game can be found in the Physical Computing and Fabrication section."],
+                slides: [{ type: "youtube", videoId: "-J4v9c1_ru8", thumb: "resources/Works/Video/RuesDeMTL.jpg" }]
             },
             {
                 modalId: "film-modal-5",
                 title: "The city, the body",
                 mediums: "Film, Video",
-                date: "2026",
+                date: "2023",
                 coverThumb: "resources/Works/Video/CityBody.jpg",
-                hasInfo: false,
+                hasInfo: true,
+                independentInfo: false,
+                infoTitle: ["The city, the body"],
+                infoText: ["My submission for a university project, where I produced a 1-2min video based on how a city is like a body.<br><br>All footage was personally recorded on a Sony FX6 with a Sennheiser MKH 416."],
                 slides: [{ type: "youtube", videoId: "G0hbverd19M", thumb: "resources/Works/Video/CityBody.jpg" }]
             },
-            {
-                modalId: "film-modal-6",
-                title: "Les rues de Montréal",
-                mediums: "Film, Video",
-                date: "2026",
-                coverThumb: "resources/Works/Video/RuesDeMTL.jpg",
-                hasInfo: false,
-                slides: [{ type: "youtube", videoId: "-J4v9c1_ru8", thumb: "resources/Works/Video/RuesDeMTL.jpg" }]
-            }
+            // {
+            //     modalId: "film-modal-6",
+            //     title: "Thermal Shutdown",
+            //     mediums: "Film, Video",
+            //     date: "2026",
+            //     coverThumb: "resources/Works/Video/ThermalShutdown.jpg",
+            //     hasInfo: true,
+            //     independentInfo: false,
+            //     infoTitle: "Thermal Shutdown",
+            //     infoText: "Description for Thermal Shutdown.",
+            //     slides: [{ type: "youtube", videoId: "SnsG77LGZvs", thumb: "resources/Works/Video/ThermalShutdown.jpg" }]
+            // },
+
         ]
     },
     photography: {
@@ -173,7 +182,11 @@ const portfolioData = {
                 mediums: "Character Pipeline (Unreal Engine 5)",
                 date: "2026",
                 coverThumb: "resources/Works/3D/Incarnation_1.jpg",
-                desc: "This is where I will place the detailed description for the project. Explain my conceptual approach, the creative process, technical challenges, and final outcome. This modal can easily be duplicated and modified for each work, meow.",
+                hasInfo: true,
+                independentInfo: false,
+                infoTitle: ["Character creation", "Character animation"],
+                infoText: ["This character was created using the FluidNinja plugin, it uses an invisible mannequin and its bones to drive the particle simulation, creating a character made of electricity, flames and smoke. It was an exploration of creating abstract yet humanoid forms, pushing the boundaries of traditional character design, which is usually centered around 3D models and not particles or physics simulations.",
+                    "Animations were taken from mixamo, and applied to the invisible mannequin which drives the particle simulation. Character acceleration, deceleration, blendspaces, feet synchronization, and transition states were polished to create more natural animations and movement."],
                 slides: [
                     { type: "youtube", videoId: "Ngts96kr_iY", thumb: "resources/Works/3D/Incarnation_1.jpg" },
                 ]
@@ -184,7 +197,10 @@ const portfolioData = {
                 mediums: "Blender, 3D Modeling & Rendering",
                 date: "2025",
                 coverThumb: "resources/Works/3D/zip1-min.png",
-                desc: "This is where I will place the detailed description for the project. Explain my conceptual approach, the creative process, technical challenges, and final outcome. This modal can easily be duplicated and modified for each work, meow.",
+                hasInfo: true,
+                independentInfo: false,
+                infoTitle: ["Project Context & Concept"],
+                infoText: ["Zippociety is a 3D digital production work exploiting the creative potential of the medium to transform mundane objects, in this case Zippo lighters, and turning them into subjects of a reflection over society, hierarchy, beliefs, sacrifice and purpose. The project raises questions about these themes and exploitation/manipulation in society by presenting a group of Zippos bowing down and offering their covers to a larger entity, a double hinged counterpart.<br><br>The scene presents the absurdity of blind or nonsensical devotion, functional lighters offering their covers, thus sacrificing their functionality/purpose, to a “greater” entity, locked by its cover with hinges on both sides, rendering it useless. Following the theme of the project, the one-sided ritual uses lighters to bring reflection on individuals devoting themselves to something that ultimately brings them nothing. Ultimately, Zippociety exploits the possibilities of digital 3D production to invite its viewers to reflect about societal systems of power, conformity and submission towards them, and question their purpose."],
                 slides: [
                     { type: "image", src: "resources/Works/3D/zip1-min.png", thumb: "resources/Works/3D/zip1-min.png" },
                     { type: "image", src: "resources/Works/3D/zip2-min.png", thumb: "resources/Works/3D/zip2-min.png" },
