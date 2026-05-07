@@ -207,7 +207,7 @@ body {
     text-rendering: optimizeSpeed;
     line-height: var(--line-height-body);
     background-color: var(--color-background);
-    background-image: url('../resources/Works/3D/submerged_20.jpg');
+    background-image: url('../../resources/Works/3D/submerged_20.jpg');
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
